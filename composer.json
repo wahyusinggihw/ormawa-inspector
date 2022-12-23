@@ -1,0 +1,7 @@
+{
+    "name": "wahyu/ormawa-inspector-laragon",
+    "description": "Website pengelola kinerja ormawa",
+    "require": {
+        "mongodb/mongodb": "^1.15"
+    }
+}
