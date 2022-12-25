@@ -2,6 +2,7 @@
     "name": "wahyu/ormawa-inspector-laragon",
     "description": "Website pengelola kinerja ormawa",
     "require": {
-        "mongodb/mongodb": "^1.15"
+        "mongodb/mongodb": "^1.15",
+        "almasaeed2010/adminlte": "~3.2"
     }
 }

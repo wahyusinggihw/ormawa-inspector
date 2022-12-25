@@ -10,26 +10,17 @@
 
 <body>
     <?php
-    require 'vendor/autoload.php';
-
-    use MongoDB\Client as MongoClient;
-
-    $client = new MongoClient("mongodb://localhost:27017");
-    $db = $client->ormawainspector;
-
-    $ormawaCollections = $db->ormawa;
-
-    $random_str = random_int(1, 1000);
-
+    require('db/ormawa.php');
+    $db = new Ormawa();
+    $random_str = rand(0, 1000);
+    // $db->insertOne(['nama' => 'Ormawa' . $random_str]);
     // tambah 1 dokumen setiap refresh coy
-    // $result = $ormawaCollections->insertOne(['nama' => 'Ormawa' . $random_str]);
-
-
+    $getOrmawa = $db->ormawaCollections();
     echo "Jumlah dokumen: ";
-    echo $ormawaCollections->count() . "<br> <br>";
-
+    echo $getOrmawa->count() . "<br> <br>";
+    $ormawaCollections = $getOrmawa->find();
     echo "Dokuments: <br>";
-    foreach ($ormawaCollections->find() as $document) {
+    foreach ($ormawaCollections as $document) {
         echo $document['nama'] . "<br>";
     }
     ?>
