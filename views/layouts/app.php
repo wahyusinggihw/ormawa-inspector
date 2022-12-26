@@ -57,26 +57,28 @@
         <section class="section dashboard">
             <div class="row">
                 <?php
+                $page = $_SERVER['REQUIEST_URI'];
 
-                // if (isset($_GET['page'])) {
-                //     $page = $_GET['page'];
-                //     var_dump($page);
-                //     switch ($page) {
-                //         case 'home':
-                //             include('views/home.php');
-                //             break;
-                //         case 'menu2':
-                //             include('views/menu2.php');
-                //             break;
-                //         case 'menu3':
-                //             include('views/menu3.php');
-                //             break;
-                //         default:
-                //             include('views/home.php');
-                //     }
-                // }
+                var_dump($page);
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    var_dump($page);
+                    switch ($page) {
+                        case 'home':
+                            include('views/home.php');
+                            break;
+                        case 'menu2':
+                            include('views/menu2.php');
+                            break;
+                        case 'menu3':
+                            include('views/menu3.php');
+                            break;
+                        default:
+                            include('views/home.php');
+                    }
+                }
                 // include('views/home.php');
-                include('views/menu2.php');
+                // include('views/utama.php');
                 ?>
 
 
