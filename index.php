@@ -5,5 +5,5 @@ if (!session_id()) {
 
 // require_once 'init.php';
 
-
+include('config.php');
 include('views/layouts/app.php');
