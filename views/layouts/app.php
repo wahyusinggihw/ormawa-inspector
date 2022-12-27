@@ -46,10 +46,7 @@
                 </ol>
             </nav>
         </div>
-<<<<<<< HEAD
-=======
         <!-- End Page Title -->
->>>>>>> master
 
         <section class="section dashboard">
             <div class="row">
