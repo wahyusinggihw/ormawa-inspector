@@ -1,4 +1,4 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('BASE_URL', 'http://localhost/ormawa-inspector/');
+const BASEURL = 'http://localhost/ormawa-inspector/views/';
+// define('BASEURL', 'http://localhost/');
