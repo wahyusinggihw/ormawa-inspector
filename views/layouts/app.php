@@ -31,7 +31,7 @@
 
 <body>
     <?php
-    include('config.php');
+    // include('config.php');
     include('views/components/header.php');
     include('views/components/sidebar.php');
     ?>
