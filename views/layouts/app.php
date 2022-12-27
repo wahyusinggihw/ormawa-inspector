@@ -31,9 +31,9 @@
 
 <body>
     <?php
+    include('config.php');
     include('views/components/header.php');
     include('views/components/sidebar.php');
-
     ?>
     <main id="main" class="main">
 
@@ -46,13 +46,25 @@
                 </ol>
             </nav>
         </div>
+<<<<<<< HEAD
+=======
+        <!-- End Page Title -->
+>>>>>>> master
 
         <section class="section dashboard">
             <div class="row">
-
                 <?php
-                include($childView);
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    include("views/$page.php");
+                } else {
+                    include('views/index.php');
+                }
+
+
+                // include('views/utama.php');
                 ?>
+
 
             </div>
         </section>
