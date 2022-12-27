@@ -23,6 +23,8 @@
     foreach ($ormawaCollections as $document) {
         echo $document['nama'] . "<br>";
     }
+
+    include("views/pages/penilaianku.php")
     ?>
 </body>
 
