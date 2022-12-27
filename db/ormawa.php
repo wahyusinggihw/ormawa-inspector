@@ -1,5 +1,5 @@
 <?php
-include('db/db.php');
+require_once('db/db.php');
 
 class Ormawa extends DB
 {
