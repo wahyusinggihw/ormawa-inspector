@@ -24,12 +24,12 @@
                       <i class="bi bi-search"></i>
                   </a>
               </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-icon" href="logout.php">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <small>Logout</small>
-                    </a>
-                </li>
+              <li class="nav-item">
+                  <a class="nav-link nav-icon" href="logout.php">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <small>Logout</small>
+                  </a>
+              </li>
 
           </ul>
       </nav>
