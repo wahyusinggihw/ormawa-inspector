@@ -34,8 +34,4 @@
           </ul>
       </nav>
 
-<<<<<<< HEAD
-  </header>
-=======
   </div><!-- End Header -->
->>>>>>> master
