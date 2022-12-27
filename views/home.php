@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">BEM FTK UNDIKSHA</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn rounded-pill btn-primary">Beri penilaian <i class="bi bi-star-half"></i></a>
+                    <a href="<?php BASEURL ?> ?page=inspect" class="btn rounded-pill btn-primary">Beri penilaian <i class="bi bi-star-half"></i></a>
                 </div>
             </div>
             </div>
