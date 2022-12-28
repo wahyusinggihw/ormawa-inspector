@@ -1,31 +1,27 @@
 <?php
 // login
-require_once 'db/users.php';
-$users = new Users();
+require_once 'db/dosen.php';
+$dosens = new DosenPembimbing();
 
 // var_dump($_SESSION['user']);
 
 if (isset($_POST['register'])) {
-    $post_email = $_POST['email'];
-    $post_password = $_POST['password'];
-    $data = $users->findOneUser([
-        'email' => $post_email,
-        'password' => $post_password
-    ]);
-    foreach ($data as $user) {
-        var_dump($user);
-        if (empty($user)) {
-            // echo "Email atau Password Salah";
-            // if ($data) {
-            //     $_SESSION['user'] = $data['email'];
-            //     header('Location: index.php');
-            // } else {
-            //     echo "Email atau Password Salah";
-            // }
-        } else {
-            // echo $user;
-        }
+    $dataDosen = $dosens->getAll();
+    foreach ($dataDosen as $key => $value) {
+
+        var_dump($value);
     }
+    // $post_nama = $_POST['email'];
+    // $post_email = $_POST['email'];
+    // $post_password = $_POST['password'];
+    // $data = $users->findOneUser([
+    //     'email' => $post_email,
+    // ]);
+    // if (empty($data)) {
+
+    // } else {
+    //     echo ("<script>alert('Email sudah digunakan');</script>");
+    // }
 }
 
 

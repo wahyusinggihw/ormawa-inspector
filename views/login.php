@@ -1,5 +1,6 @@
 <?php
 require_once 'db/users.php';
+require_once 'views/components/modal.php';
 
 $users = new Users();
 
@@ -14,13 +15,13 @@ if (isset($_SESSION['user']) == null) {
         ]);
         // var_dump($data);
         if (empty($data)) {
-            echo ("<script>alert('Email tidak terdaftar');</script>");
+            echo ("<script>alert('Login gagal');</script>");
         } else {
             if ($data->password == $post_password) {
                 $_SESSION["user"] = "admin";
                 echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
             } else {
-                echo ("<script>alert('Password salah');</script>");
+                echo ("<script>alert('Login gagal');</script>");
             }
         }
     }
