@@ -21,7 +21,7 @@ class Users extends DB
 
     public function findOneUser($data)
     {
-        return $this->usersCollections->find($data);
+        return $this->usersCollections->findOne($data);
     }
 
     public function count()

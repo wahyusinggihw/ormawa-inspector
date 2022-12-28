@@ -11,16 +11,16 @@ if (isset($_SESSION['user']) == null) {
         $post_password = $_POST['password'];
         $data = $users->findOneUser([
             'email' => $post_email,
-            'password' => $post_password
         ]);
-        foreach ($data as $user) {
-            if ($user->email == $post_email && $user->password == $user->password) {
+        // var_dump($data);
+        if (empty($data)) {
+            echo ("<script>alert('Email tidak terdaftar');</script>");
+        } else {
+            if ($data->password == $post_password) {
                 $_SESSION["user"] = "admin";
-                // var_dump($_SESSION["user"]);
                 echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
             } else {
-                // javascript alert
-                // echo "<script>alert('Email atau Password Salah')</script>";
+                echo ("<script>alert('Password salah');</script>");
             }
         }
     }
