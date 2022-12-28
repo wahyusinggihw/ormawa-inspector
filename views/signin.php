@@ -2,41 +2,39 @@
 // login
 require_once 'db/users.php';
 $users = new Users();
-$usersCollection = $users->usersCollections();
-$userFinder = $usersCollection->find(array('username' => 'admin'));
 
-var_dump($userFinder);
-if (isset($_SESSION['auth'])) {
-    echo 'Kamu sudah login';
-    // header("location:home.php");
+
+// var_dump($data);
+$email = $_POST['email'];
+// $password = $_POST['password'];
+// $data = $users->findOneUser([
+//     'email' => $email,
+//     'password' => $password
+// ]);
+
+// foreach ($data as $user) {
+//     var_dump($user);
+// }
+// var_dump(isset($_POST['signin']));
+// if () {
+// }
+
+if (isset($_POST['signin'])) {
 } else {
-    // echo 'Kamu belum login';
-    if (isset($_POST['signin'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $data = $users->usersCollections();
-
-        if (!$data == $email) {
-            echo 'email salah';
-            // return header("location:signin.php?pesan=gagal");
-        } else if (!$data == $password) {
-            echo 'password salah';
-            // return header("location:signin.php?pesan=gagal");
-        } else {
-            echo 'berhasil';
-            // $_SESSION['email'] = $email;
-            // $_SESSION['status'] = "login";
-            // header("location:home.php");
-        }
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $data = $users->findOneUser([
+        'email' => $email,
+        'password' => $password
+    ]);
+    if ($data) {
+        // $_SESSION['signin'] = true;
+        // header('Location: ' . BASEURL . '?page=home');
     } else {
-        echo 'gagal';
+        // $_SESSION['signin'] = false;
+        // header('Location: ' . BASEURL . '?page=signin');
     }
 }
-// $email = $_POST['email'];
-// $password = $_POST['password'];
-// var_dump($email);
-// var_dump($password);
-// var_dump($data = $users->usersCollections()->findOne(['email']));
 
 ?>
 
@@ -54,7 +52,7 @@ if (isset($_SESSION['auth'])) {
         <h6 class="m-0 font-weight-bold text-primary">Sign In Admin</h6>
     </div>
     <div class="container col-sm">
-        <form method="POST">
+        <form method="POST" name="signin" action="">
             <div class="mb-3 mt-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
