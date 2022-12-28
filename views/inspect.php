@@ -24,9 +24,7 @@
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
                     <td><button type="button" class="btn btn-warning btn-sm">on going</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class= "bi bi-star-half">
-
-                    </i></button></td>
+                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
