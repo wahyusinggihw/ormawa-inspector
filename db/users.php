@@ -34,6 +34,11 @@ class Users extends DB
         return $this->usersCollections->insertOne($data);
     }
 
+    public function updateOne($data)
+    {
+        return $this->usersCollections->updateOne($data);
+    }
+
     public function drop()
     {
         return $this->usersCollections->drop();

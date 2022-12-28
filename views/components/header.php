@@ -1,6 +1,5 @@
   <!-- ======= Header ======= -->
   <div id="header" class="header fixed-top d-flex align-items-center">
-
       <div class="d-flex align-items-center justify-content-between">
           <a href="index.html" class="logo d-flex align-items-center">
               <img class="rounded-circle" src="public/img/profile.jpg" alt="">
@@ -77,18 +76,14 @@
                 </ul> -->
               <!-- End Profile Dropdown Items -->
 
-              <!-- INI LOGOUT -->
-              <li class="nav-item d-block d-lg-none">
-                  <a class="nav-link nav-icon search-bar-toggle " href="#">
-                      <i class="bi bi-search"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link nav-icon" href="<?php BASEURL ?> ?page=signin">
-                      <i class="bi bi-box-arrow-in-left"></i>
-                      <small>Sign In</small>
-                  </a>
-              </li>
+              <?php
+                if (is_null($_SESSION['user'])) {
+                    include 'views/components/login_navbar.php';
+                } else {
+                    include 'views/components/profile_navbar.php';
+                    include 'views/components/logout_navbar.php';
+                }
+                ?>
 
           </ul>
       </nav>

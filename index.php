@@ -1,7 +1,7 @@
 <?php
 if (!session_id()) {
     session_start();
-    $_SESSION['signin'] = false;
+    isset($_SESSION['user']) ?  $_SESSION['user'] = 'admin' : $_SESSION['user'] = null;
 }
 
 // require_once 'init.php';

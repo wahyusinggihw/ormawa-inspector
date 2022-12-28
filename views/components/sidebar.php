@@ -15,22 +15,13 @@
          <span>Penilaian Kegiatan</span>
        </a>
      </li><!-- End Dashboard Nav -->
-
-     <li class="nav-heading">Admin</li>
-
-     <li class="nav-item">
-       <a class="nav-link collapsed" href="<?php BASEURL ?> ?page=kegiatan">
-         <i class="bi bi-calendar"></i>
-         <span>Kegiatan</span>
-       </a>
-     </li>
-     <li class="nav-item">
-       <a class="nav-link collapsed" href="<?php BASEURL ?> ?page=review">
-         <i class="bi bi-chat-dots"></i>
-         <span>Hasil Review</span>
-       </a>
-     </li>
-     <!-- End Profile Page Nav -->
+     <?php
+      if (isset($_SESSION['user'])) {
+        if ($_SESSION['user'] == "admin") {
+          include 'views/components/side_admin.php';
+        }
+      }
+      ?>
    </ul>
 
  </aside><!-- End Sidebar-->
