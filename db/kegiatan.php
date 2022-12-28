@@ -6,7 +6,7 @@ class Kegiatan extends DB
     public function __construct()
     {
         parent::__construct();
-        $this->kegiatanCollections = $this->db->kegiatan;
+        $this->kegiatanCollections = $this->db->kegiatans;
     }
 
     public function kegiatanCollections()
@@ -17,6 +17,13 @@ class Kegiatan extends DB
     public function getAll()
     {
         return $this->kegiatanCollections->find();
+    }
+
+    public  function getByRole($role)
+    {
+        return $this->kegiatanCollections->find([
+            'nama' => $role,
+        ]);
     }
 
     public function count()

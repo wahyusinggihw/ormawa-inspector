@@ -65,6 +65,11 @@
     <script src="public/assets/vendor/php-email-form/validate.js"></script>
 
     <script src="public/assets/js/main.js"></script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>
