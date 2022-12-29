@@ -21,6 +21,27 @@ db.users.insertMany([
     password: "bem",
     role: "bem",
   },
+  {
+    _id: "pokja",
+    name: "pokja",
+    email: "pokja@gmail.com",
+    password: "pokja",
+    role: "pokja",
+  },
+  {
+    _id: "hmjti",
+    name: "hmjti",
+    email: "hmjti@gmail.com",
+    password: "hmjti",
+    role: "hmjti",
+  },
+  {
+    _id: "hmjtekin",
+    name: "hmjtekin",
+    email: "hmjtekin@gmail.com",
+    password: "hmjtekin",
+    role: "hmjtekin",
+  },
 ]);
 
 // DATA DOSEN UNTUK REGISTER
@@ -50,83 +71,111 @@ db.dosen_pembimbing.insertMany([
 // DATA KEGIATAN
 db.kegiatans.insertMany([
   {
-    nama: "bem",
+    role: "bem",
+    namaOrmawa: "Badan Eksekutif Mahasiswa FTK",
     kegiatan: [
       {
-        nama: "Kegiatan BEM",
+        nama: "Kegiatan BEM 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan BEM",
+        nama: "Kegiatan BEM 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan BEM",
+        nama: "Kegiatan BEM 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
     ],
   },
   {
-    nama: "pokja",
+    role: "pokja",
+    namaOrmawa: "Kelompok Kerja dan Penalaran",
     kegiatan: [
       {
-        nama: "Kegiatan pokja",
+        nama: "Kegiatan pokja 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan pokja",
+        nama: "Kegiatan pokja 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan pokja",
+        nama: "Kegiatan pokja 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
     ],
   },
   {
-    nama: "hmjti",
+    role: "hmjti",
+    namaOrmawa: "Himpunan Mahasiswa Jurusan Teknik Informatika",
     kegiatan: [
       {
-        nama: "Kegiatan hmjti",
+        nama: "Kegiatan hmjti 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan hmjti",
+        nama: "Kegiatan hmjti 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan hmjti",
+        nama: "Kegiatan hmjti 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
     ],
   },
   {
-    nama: "hmjtekin",
+    role: "hmjtekin",
+    namaOrmawa: "Himpunan Mahasiswa Jurusan Teknologi Industri",
     kegiatan: [
       {
-        nama: "Kegiatan hmjtekin",
+        nama: "Kegiatan hmjtekin 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan hmjtekin",
+        nama: "Kegiatan hmjtekin 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
       {
-        nama: "Kegiatan hmjtekin",
+        nama: "Kegiatan hmjtekin 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
       },
     ],
+  },
+]);
+
+// DATA MAHASISWA
+db.users.insertMany([
+  {
+    role: "mahasiswa",
+    name: "Mahasiswa 1",
+    Prodi: "Computer Science",
+  },
+  {
+    role: "mahasiswa",
+    name: "Mahasiswa 2",
+    Prodi: "Computer Science",
+  },
+  {
+    role: "mahasiswa",
+    name: "Mahasiswa 3",
+    Prodi: "Computer Science",
+  },
+  {
+    role: "mahasiswa",
+    name: "Mahasiswa 4",
+    Prodi: "Computer Science",
   },
 ]);

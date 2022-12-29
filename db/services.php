@@ -1,5 +1,7 @@
 <?php
 
+require_once 'db/users.php';
+
 class Services extends Users
 {
     public function __construct()
@@ -9,17 +11,21 @@ class Services extends Users
 
     public function roleCatcher()
     {
-        $role = $_SESSION['role'];
-        $data = $this->findOneUser([
-            'role' => $role,
-        ]);
-        if (empty($data)) {
-            // echo ("<script>alert('Login gagal');</script>");
-        } else {
-            if ($data->role == $role) {
-                return $data->role;
+        if ($_SESSION['role'] == null) {
+            return false;
+        } {
+            $role = $_SESSION['role'];
+            $data = $this->findOneUser([
+                'role' => $role,
+            ]);
+            if (empty($data)) {
+                // echo ("<script>alert('Login gagal');</script>");
             } else {
-                return false;
+                if ($data->role == $role) {
+                    return $data->role;
+                } else {
+                    return false;
+                }
             }
         }
     }

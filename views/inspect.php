@@ -1,8 +1,54 @@
+<?php
+if ($_SESSION['user'] == null) {
+    echo ("<script>alert('Login dahulu untuk melakukan penilaian');</script>");
+    echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=login' . "';</script>");
+    exit;
+}
+
+require_once 'db/services.php';
+require_once 'db/kegiatan.php';
+$kegiatans = new Kegiatan();
+// $roleCatcher = new Services();
+$role = $_POST['role'];
+$kegiatanCollection = $kegiatans->getByRole($role);
+
+$i = 0;
+?>
+
 <div class="row">
 
     <div>
-        <h5>SELAMAT DATANG DI PENILAIAN</h5>
-        <h5>BEM FTK 2022/2023</h5>
+        <?php
+        switch ($role) {
+            case 'admin':
+                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
+            <h5>BEM FTK 2022/2023</h5>';
+                break;
+
+            case 'bem':
+                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
+            <h5>BEM FTK 2022/2023</h5>';
+                break;
+                break;
+
+            case 'pokja':
+                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
+            <h5>POKJA FTK 2022/2023</h5>';
+                break;
+
+            case 'hmjti':
+                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
+            <h5>HMJ TI 2022/2023</h5>';
+                break;
+
+            case 'hmjtekin':
+                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
+            <h5>HMJ TEKIN 2022/2023</h5>';
+                break;
+        }
+
+        ?>
+
     </div>
     <div class="card shadow">
         <div class="card-header py-3">
@@ -19,33 +65,43 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-warning btn-sm">on going</button></td>
-                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
-                </tr>
-                <tr>
+
+                <?php foreach ($kegiatanCollection as $item) :  ?>
+                    <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
+                        <?php
+
+                        // $sebelum = $item['kegiatan']['0']['nama'];
+                        // $namaKegiatan = json_encode($sebelum);
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $i ?></th>
+                            <td><?= $kegiatan->nama ?></td>
+                            <td><?= $kegiatan->pelaksanaan ?></td>
+                            <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $kegiatan->status ?></button></td>
+                            <td><a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <!-- <tr>
                     <th scope="row">2</th>
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
                     <td><button type="button" class="btn btn-secondary btn-sm">waitting</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class= "bi bi-star-half">
+                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
 
-                    </i></button></td>
+                            </i></button></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
                     <td><button type="button" class="btn btn-success btn-sm">terlaksana</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class= "bi bi-star-half">
+                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
 
-                    </i></button></td>
-                </tr>
-                
-                
+                            </i></button></td>
+                </tr> -->
+
+
             </tbody>
         </table>
     </div>

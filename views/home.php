@@ -16,18 +16,20 @@
     <?php foreach ($kegiatanCollection as $item) : ?>
         <?php
         $sebelum = $item['kegiatan']['0']['nama'];
-        $nama = json_encode($sebelum);
-
+        $namaKegiatan = json_encode($sebelum);
         ?>
         <div class="col">
             <div class="card mb-4 mt-4">
                 <div class="card-body text-center">
-                    <h5 class="my-3"><?= $item->nama ?></h5>
+                    <h5 class="my-3"><?= $item->namaOrmawa ?></h5>
                     <img src="public/img/profile.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                    <p class="text-justify mb-4 mt-3"><?= $nama ?></p>
-                    <div class="d-flex justify-content-center mb-2">
-                        <a href="<?php BASEURL ?> ?page=inspect" class="btn btn-outline-primary ms-1 rounded-pill">Inspect <i class="bi bi-star-half"></i></a>
-                    </div>
+                    <p class="text-justify mb-4 mt-3"><?= $namaKegiatan ?></p>
+                    <form action="<?php BASEURL ?> ?page=inspect" method="post" name="namaOrmawa">
+                        <div class="d-flex justify-content-center mb-2">
+                            <input type="hidden" name="role" value="<?= $item->role ?>">
+                            <button type="submit" name="submit" class="btn btn-outline-primary ms-1 rounded-pill">Inspect <i class="bi bi-star-half"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

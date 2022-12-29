@@ -22,7 +22,7 @@ class Kegiatan extends DB
     public  function getByRole($role)
     {
         return $this->kegiatanCollections->find([
-            'nama' => $role,
+            'role' => $role,
         ]);
     }
 

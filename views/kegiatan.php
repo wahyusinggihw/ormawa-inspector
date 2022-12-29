@@ -61,23 +61,22 @@ switch ($role) {
             </thead>
             <tbody>
                 <?php
-                $cursor = $kegiatans->getAll();
+                $cursor = $kegiatans->getByRole($role);
                 // var_dump($cursor);
                 $i = 0;
-                foreach ($cursor as $kegiatan) {
-                    // var_dump($kegiatan);
-                    $i++;
-                    echo '<tr>';
-                    echo '<th scope="row">' . $i . '</th>';
-                    echo '<td>' . $kegiatan->nama . '</td>';
-                    echo '<td>' . $kegiatan->pelaksanaan . '</td>';
-                    echo '<td>' . $kegiatan->status . '</td>';
-                    echo '<td><a href="' . BASEURL . '?page=detailKegiatan&id=' . $kegiatan->_id . '" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a><a href="' . BASEURL . '?page=detailKegiatan&id=' . $kegiatan->_id . '" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a></td>';
-                    echo '</>';
-                }
-
                 ?>
-                <tr>
+                <?php foreach ($cursor as $item) :  ?>
+                    <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
+                        <tr>
+                            <th scope="row"><?= $i ?></th>
+                            <td><?= $kegiatan['nama'] ?></td>
+                            <td><?= $kegiatan['pelaksanaan'] ?></td>
+                            <td><?= $kegiatan['status'] ?></td>
+                            <td><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <!-- <tr>
                     <th scope="row">1</th>
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
@@ -101,7 +100,7 @@ switch ($role) {
                     <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
 
                             </i></button></td>
-                </tr>
+                </tr> -->
 
 
             </tbody>
