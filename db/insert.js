@@ -168,8 +168,8 @@ db.kegiatans.insertMany([
   {
     _id: new ObjectId(),
     idOrmawa: "hmjtekin",
-    nama: "Kegiatan hmjtekin 1",
     details: {
+      nama: "Kegiatan hmjtekin 1",
       pelaksanaan: "2021-01-01",
       status: "pending",
       deskripsi:

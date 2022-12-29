@@ -66,16 +66,22 @@ $role = $roleCatcher->roleCatcher();
             <tbody>
                 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e2f9ec7 (fix logic dan db)
                 if ($role == "admin") {
                     $cursor = $kegiatans->getAll();
                 } else {
                     $cursor = $kegiatans->getById($role);
                 }
+<<<<<<< HEAD
 =======
 
                 $cursor = $kegiatans->getByRole($role);
                 // var_dump($cursor);
 >>>>>>> 7ae54c5 (sebelum ganti struktur db)
+=======
+>>>>>>> e2f9ec7 (fix logic dan db)
                 $i = 0;
                 ?>
                 <?php foreach ($cursor as $item) : $i++ ?>
