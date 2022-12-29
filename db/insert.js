@@ -8,13 +8,6 @@ db.users.insertMany([
     role: "admin",
   },
   {
-    _id: "admin2",
-    name: "Admin2",
-    email: "admin22@gmail.com",
-    password: "admin2",
-    role: "admin",
-  },
-  {
     _id: "bem",
     name: "bem",
     email: "bem@gmail.com",
@@ -78,16 +71,22 @@ db.kegiatans.insertMany([
         nama: "Kegiatan BEM 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan BEM 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan BEM 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
@@ -99,16 +98,22 @@ db.kegiatans.insertMany([
         nama: "Kegiatan pokja 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan pokja 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan pokja 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
@@ -120,16 +125,22 @@ db.kegiatans.insertMany([
         nama: "Kegiatan hmjti 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan hmjti 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan hmjti 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
@@ -141,16 +152,22 @@ db.kegiatans.insertMany([
         nama: "Kegiatan hmjtekin 1",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan hmjtekin 2",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         nama: "Kegiatan hmjtekin 3",
         pelaksanaan: "2021-01-01",
         status: "pending",
+        deskripsi:
+          "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
@@ -162,20 +179,28 @@ db.users.insertMany([
     role: "mahasiswa",
     name: "Mahasiswa 1",
     Prodi: "Computer Science",
+    email: "mahasiswa1@gmail.com",
+    password: "mahasiswa",
   },
   {
     role: "mahasiswa",
     name: "Mahasiswa 2",
     Prodi: "Computer Science",
+    email: "mahasiswa2@gmail.com",
+    password: "mahasiswa",
   },
   {
     role: "mahasiswa",
     name: "Mahasiswa 3",
     Prodi: "Computer Science",
+    email: "mahasiswa3@gmail.com",
+    password: "mahasiswa",
   },
   {
     role: "mahasiswa",
     name: "Mahasiswa 4",
     Prodi: "Computer Science",
+    email: "mahasiswa3@gmail.com",
+    password: "mahasiswa",
   },
 ]);

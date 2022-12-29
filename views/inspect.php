@@ -8,10 +8,10 @@ if ($_SESSION['user'] == null) {
 require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 $kegiatans = new Kegiatan();
-// $roleCatcher = new Services();
-$role = $_POST['role'];
+$roleCatcher = new Services();
+// $role = $_POST['role'];
+$role = $roleCatcher->roleCatcher();
 $kegiatanCollection = $kegiatans->getByRole($role);
-
 $i = 0;
 ?>
 
@@ -52,7 +52,7 @@ $i = 0;
     </div>
     <div class="card shadow">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-black">KEGIATAN BEM</h6>
+            <h6 class="m-0 font-weight-bold text-black">Daftar Kegiatan</h6>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -65,7 +65,6 @@ $i = 0;
                 </tr>
             </thead>
             <tbody>
-
                 <?php foreach ($kegiatanCollection as $item) :  ?>
                     <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
                         <?php

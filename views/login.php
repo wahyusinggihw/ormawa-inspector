@@ -1,7 +1,8 @@
 <?php
 require_once 'db/users.php';
 require_once 'views/components/modal.php';
-
+require_once 'db/users.php';
+require_once 'db/services.php';
 
 if (isset($_SESSION['user']) == null) {
     if (isset($_POST['login'])) {
@@ -11,14 +12,12 @@ if (isset($_SESSION['user']) == null) {
         $data = $users->findOneUser([
             'email' => $post_email,
         ]);
-        // var_dump($data);
         if (empty($data)) {
             echo ("<script>alert('Login gagal');</script>");
         } else {
             if ($data->password == $post_password) {
-                $_SESSION['role'] = $data->role;
-                $_SESSION["user"] = "admin";
-                echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
+                $_SESSION["role"] = $data->role;
+                echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
             } else {
                 echo ("<script>alert('Login gagal');</script>");
             }

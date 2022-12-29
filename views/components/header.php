@@ -77,11 +77,16 @@
               <!-- End Profile Dropdown Items -->
 
               <?php
-                if (is_null($_SESSION['user'])) {
-                    include 'views/components/login_navbar.php';
+                var_dump($_SESSION['role']);
+                if (!is_null($_SESSION['role'])) {
+                    if ($_SESSION['role'] != "guest") {
+                        include 'views/components/profile_navbar.php';
+                        include 'views/components/logout_navbar.php';
+                    } else {
+                        include 'views/components/login_navbar.php';
+                    }
                 } else {
-                    include 'views/components/profile_navbar.php';
-                    include 'views/components/logout_navbar.php';
+                    include 'views/components/login_navbar.php';
                 }
                 ?>
 

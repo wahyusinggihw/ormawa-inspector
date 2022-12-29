@@ -16,8 +16,10 @@
        </a>
      </li><!-- End Dashboard Nav -->
      <?php
-      if (isset($_SESSION['user'])) {
-        if ($_SESSION['user'] == "admin") {
+      // var_dump($_SESSION['user']);
+      var_dump($_SESSION['role']);
+      if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] != "mahasiswa" && $_SESSION['role'] != "guest") {
           include 'views/components/side_admin.php';
         }
       }

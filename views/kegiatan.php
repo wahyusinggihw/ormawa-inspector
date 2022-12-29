@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['user'] != "admin") {
+if ($_SESSION['role'] == "mahasiswa" && $_SESSION['role'] == "guest") {
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
     exit;
 }
@@ -47,7 +47,7 @@ switch ($role) {
 <div class="row">
     <div class="card shadow py-4">
         <div class="col col-sm-2 mb-2">
-            <a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>
+            <a href="#" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>
         </div>
         <table class="table table-bordered">
             <thead>
