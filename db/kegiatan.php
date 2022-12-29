@@ -20,28 +20,17 @@ class Kegiatan extends DB
     }
 
     //get by id
-    public function getKegiatan()
+    public function getKegiatan($id)
     {
-        return $this->kegiatanCollections->find(
-            array(
-                "_id" => "bem",
-                "kegiatan" => array(
-                    "_id" => array(
-                        '$oid' => array(
-                            "63ad6f75fad612d30bfd47de",
-                        )
-                    )
-                )
-            )
-        );
+        return $this->kegiatanCollections->find([
+            "_id" => new MongoDB\BSON\ObjectId("$id"),
 
-        // return $this->kegiatanCollections->find(array("_id" => "bem", array("kegiatan" => {"_id" => "63ad6f75fad612d30bfd47de"})));
-        // return $this->kegiatanCollections->find(array("_id" => "bem"), array("kegiatan" => ["_id" => "63ad6f75fad612d30bfd47de"]));
+        ]);
     }
     public function getById($id)
     {
         return $this->kegiatanCollections->find([
-            '_id' => $id,
+            'idOrmawa' => $id,
         ]);
     }
 

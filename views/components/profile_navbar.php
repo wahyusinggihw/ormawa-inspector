@@ -3,19 +3,19 @@
 
     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="public/img/profile.jpg" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+        <span class="d-none d-md-block dropdown-toggle ps-2"></span>
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
         <li class="dropdown-header">
-            <h6>Kevin Anderson</h6>
-            <span>Web Designer</span>
+            <h6><?= $_SESSION["user_email"]; ?></h6>
+            <span><?= $_SESSION["role"] ?></span>
         </li>
-        <li>
+        <!-- <li>
             <hr class="dropdown-divider">
-        </li>
+        </li> -->
 
-        <li>
+        <!-- <li>
             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
@@ -50,8 +50,9 @@
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
             </a>
-        </li>
+        </li> -->
 
+
+    </ul>
 </li>
-</ul>
 <!-- End Profile Dropdown Items -->

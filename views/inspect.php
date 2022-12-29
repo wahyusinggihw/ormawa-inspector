@@ -42,22 +42,24 @@ $i = 0;
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($kegiatanCollection as $item) :  ?>
-                <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
-                    <?php
-                    $oid = $kegiatan->_id;
+            <?php foreach ($kegiatanCollection as $item) : $i++  ?>
 
-                    // $sebelum = $item['kegiatan']['0']['nama'];
-                    // $namaKegiatan = json_encode($sebelum);
-                    ?>
-                    <tr>
-                        <th scope="row"><?= $i ?></th>
-                        <td><?= $kegiatan->nama ?></td>
-                        <td><?= $kegiatan->pelaksanaan ?></td>
-                        <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $kegiatan->status ?></button></td>
-                        <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php
+                $oid = $item->_id;
+                $nama = $item['details']['nama'];
+                $pelaksanaan = $item['details']['pelaksanaan'];
+                $status = $item['details']['status'];
+                // $sebelum = $item['kegiatan']['0']['nama'];
+                // $namaKegiatan = json_encode($sebelum);
+                ?>
+                <tr>
+                    <th scope="row"><?= $i ?></th>
+                    <td><?= $nama ?></td>
+                    <td><?= $pelaksanaan ?></td>
+                    <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $status ?></button></td>
+                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
+                </tr>
+
             <?php endforeach; ?>
             <!-- <tr>
                     <th scope="row">2</th>

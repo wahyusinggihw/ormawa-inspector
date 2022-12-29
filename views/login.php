@@ -17,6 +17,7 @@ if (isset($_SESSION['user']) == null) {
         } else {
             if ($data->password == $post_password) {
                 $_SESSION["role"] = $data->role;
+                $_SESSION["user_email"] = $post_email;
                 echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
             } else {
                 echo ("<script>alert('Login gagal');</script>");

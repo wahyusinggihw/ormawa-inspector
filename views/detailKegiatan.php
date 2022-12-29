@@ -10,9 +10,14 @@ if ($_SESSION['role'] == "guest") {
 
 $kegiatans = new Kegiatan();
 $roleCatcher = new Services();
-$id = $_GET['id'];
+$id = $_GET['idKegiatan'];
 $role = $roleCatcher->roleCatcher();
-$kegiatanCollection = $kegiatans->getById($id);
+$kegiatanCollection = $kegiatans->getKegiatan($id);
+foreach ($kegiatanCollection as $item) {
+    $nama = $item['details']['nama'];
+    $deskripsi = $item['details']['deskripsi'];
+}
+
 $i = 0;
 ?>
 
@@ -57,7 +62,7 @@ $i = 0;
         </div>
         <div class="col">
             <div class="card mt-5 mb-2 mx-3">
-                <p class="font-weight-bold mx-3 my-3">Pagelaran akhir tahun Fakultas Teknik dan Kejuruan</p>
+                <p class="font-weight-bold mx-3 my-3"><?= $nama ?></p>
                 <div class="row gx-1 text-left mx-3 my-3">
                     <div class="col "><i class="bi bi-people-fill">500</i></div>
                     <div class="col"><i class="bi bi-star-half"> 4.8</i></div>
@@ -67,7 +72,7 @@ $i = 0;
             <div class="card mt-5 mb-2 mx-3">
                 <!-- card label -->
                 <h5 class="my-3 px-2">Detail</h5>
-                <p class="mx-2 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione soluta animi quia ad dolor reprehenderit. Totam rerum dolorem exercitationem illum. Culpa, molestias. Quas voluptates voluptatum laborum a eum. Eligendi quae ex corrupti facilis laboriosam autem adipisci in inventore odit voluptatibus officiis optio atque iure possimus, earum nobis sunt dolor ipsum blanditiis corporis doloribus delectus. Iste labore autem numquam quia distinctio tempora voluptatem consectetur optio odit, quibusdam iure, rem ea illo sequi ad ut veritatis enim a dolores porro fugiat. Accusamus libero ab consequuntur unde optio, numquam nostrum asperiores iure? Quae magnam eveniet voluptatibus laborum quasi. Sapiente minus aperiam voluptatum hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, sequi assumenda soluta quam iste praesentium velit laudantium. Quod eveniet dolores aut doloribus. Asperiores, dignissimos harum!</p>
+                <p class="mx-2 text-justify"><?= $deskripsi ?></p>
             </div>
 
         </div>

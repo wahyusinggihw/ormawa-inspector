@@ -65,21 +65,28 @@ $role = $roleCatcher->roleCatcher();
             </thead>
             <tbody>
                 <?php
-
-                $cursor = $kegiatans->getByRole($role);
-                // var_dump($cursor);
+                if ($role == "admin") {
+                    $cursor = $kegiatans->getAll();
+                } else {
+                    $cursor = $kegiatans->getById($role);
+                }
                 $i = 0;
                 ?>
-                <?php foreach ($cursor as $item) :  ?>
-                    <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
-                        <tr>
-                            <th scope="row"><?= $i ?></th>
-                            <td><?= $kegiatan['nama'] ?></td>
-                            <td><?= $kegiatan['pelaksanaan'] ?></td>
-                            <td><?= $kegiatan['status'] ?></td>
-                            <td><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a></td>
-                        </tr>
-                    <?php endforeach; ?>
+                <?php foreach ($cursor as $item) : $i++ ?>
+                    <?php
+                    $oid = $item->_id;
+                    $nama = $item['details']['nama'];
+                    $pelaksanaan = $item['details']['pelaksanaan'];
+                    $status = $item['details']['status'];
+                    ?>
+                    <tr>
+                        <th scope="row"><?= $i ?></th>
+                        <td><?= $nama ?></td>
+                        <td><?= $pelaksanaan ?></td>
+                        <td><?= $status ?></td>
+                        <td><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a></td>
+                    </tr>
+
                 <?php endforeach; ?>
                 <!-- <tr>
                     <th scope="row">1</th>
