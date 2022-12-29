@@ -1,8 +1,10 @@
 <?php
-if (!session_id()) {
-    session_start();
-    isset($_SESSION['user']) ?  $_SESSION['user'] = 'admin' : $_SESSION['user'] = null;
-}
+session_start();
+
+isset($_SESSION['role']) ? $_SESSION['role'] : $_SESSION['role'] = "guest";
+
+// if (!session_id()) {
+// }
 
 // require_once 'init.php';
 
