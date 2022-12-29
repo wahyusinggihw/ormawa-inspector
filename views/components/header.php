@@ -77,7 +77,7 @@
               <!-- End Profile Dropdown Items -->
 
               <?php
-                var_dump($_SESSION['role']);
+                // var_dump($_SESSION['role']);
                 if (!is_null($_SESSION['role'])) {
                     if ($_SESSION['role'] != "guest") {
                         include 'views/components/profile_navbar.php';

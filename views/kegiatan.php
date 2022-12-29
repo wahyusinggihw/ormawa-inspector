@@ -12,27 +12,31 @@ $kegiatans = new Kegiatan();
 $roleCatcher = new Services();
 $role = $roleCatcher->roleCatcher();
 
-switch ($role) {
-    case 'admin':
-        echo 'anda admin';
-        break;
+// switch ($role) {
+//     case 'admin':
+//         echo 'anda admin';
+//         break;
 
-    case 'bem':
-        echo 'anda bem';
-        break;
+//     case 'bem':
+//         echo 'anda bem';
+//         break;
 
-    case 'pokja':
-        echo 'anda pokja';
-        break;
+//     case 'pokja':
+//         echo 'anda pokja';
+//         break;
 
-    case 'hmjti':
-        echo 'anda hmjti';
-        break;
+//     case 'hmjti':
+//         echo 'anda hmjti';
+//         break;
 
-    case 'hmjtekin':
-        echo 'anda hmjtekin';
-        break;
-}
+//     case 'hmjtekin':
+//         echo 'anda hmjtekin';
+//         break;
+//     case 'mahasiswa':
+//         echo 'anda mahasiswa';
+//         break;
+// }
+// 
 ?>
 
 <div class="pagetitle">
@@ -61,6 +65,7 @@ switch ($role) {
             </thead>
             <tbody>
                 <?php
+
                 $cursor = $kegiatans->getByRole($role);
                 // var_dump($cursor);
                 $i = 0;

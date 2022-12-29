@@ -24,17 +24,14 @@
                     <h5 class="my-3"><?= $item->namaOrmawa ?></h5>
                     <img src="public/img/profile.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     <p class="text-justify mb-4 mt-3"><?= $namaKegiatan ?></p>
-                    <form action="<?php BASEURL ?> ?page=inspect" method="post" name="namaOrmawa">
-                        <div class="d-flex justify-content-center mb-2">
-                            <input type="hidden" name="role" value="<?= $item->role ?>">
-                            <button type="submit" name="submit" class="btn btn-outline-primary ms-1 rounded-pill">Inspect <i class="bi bi-star-half"></i></button>
-                        </div>
-                    </form>
+                    <!-- form that get id of item -->
+                    <div class="d-flex justify-content-center mb-2">
+                        <a class="btn btn-outline-primary ms-1 rounded-pill" href="<?php BASEURL ?> ?page=inspect&id=<?= $item->_id ?>">Inspect</i></a>
+                        <!-- <button type="submit" name="submit" class="btn btn-outline-primary ms-1 rounded-pill">Inspect <i class="bi bi-star-half"></i></button> -->
+                    </div>
+
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
-
-
-</div>
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'db/users.php';
+require_once 'db/kegiatan.php';
 
 class Services extends Users
 {
@@ -29,4 +30,10 @@ class Services extends Users
             }
         }
     }
+
+    // public function kegiatanCather()
+    // {
+    //     $kegiatan = new Kegiatan();
+    //     $data = $kegiatan->getByOrmawa();
+    // }
 }
