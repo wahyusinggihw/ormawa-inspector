@@ -7,7 +7,7 @@ class Ormawa extends DB
     public function __construct()
     {
         parent::__construct();
-        $this->ormawaCollections = $this->db->ormawa;
+        $this->ormawaCollections = $this->db->ormawas;
     }
     public function ormawaCollections()
     {

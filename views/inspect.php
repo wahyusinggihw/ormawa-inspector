@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['user'] == null) {
+if ($_SESSION['role'] == "guest") {
     echo ("<script>alert('Login dahulu untuk melakukan penilaian');</script>");
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=login' . "';</script>");
     exit;
@@ -9,79 +9,57 @@ require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 $kegiatans = new Kegiatan();
 $roleCatcher = new Services();
-// $role = $_POST['role'];
+$id = $_GET['id'];
 $role = $roleCatcher->roleCatcher();
-$kegiatanCollection = $kegiatans->getByRole($role);
+$kegiatanCollection = $kegiatans->getById($id);
 $i = 0;
 ?>
 
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item">Penilaian</li>
+            <li class="breadcrumb-item active">Kegiatan</li>
+        </ol>
+    </nav>
+</div>
+
 <div class="row">
-
-    <div>
-        <?php
-        switch ($role) {
-            case 'admin':
-                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
-            <h5>BEM FTK 2022/2023</h5>';
-                break;
-
-            case 'bem':
-                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
-            <h5>BEM FTK 2022/2023</h5>';
-                break;
-                break;
-
-            case 'pokja':
-                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
-            <h5>POKJA FTK 2022/2023</h5>';
-                break;
-
-            case 'hmjti':
-                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
-            <h5>HMJ TI 2022/2023</h5>';
-                break;
-
-            case 'hmjtekin':
-                echo '<h5>SELAMAT DATANG DI PENILAIAN</h5>
-            <h5>HMJ TEKIN 2022/2023</h5>';
-                break;
-        }
-
-        ?>
-
+</div>
+<div class="card shadow">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-black">Daftar Kegiatan</h6>
     </div>
-    <div class="card shadow">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-black">Daftar Kegiatan</h6>
-        </div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Kegiatan</th>
-                    <th scope="col">Pelaksanaan</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Nilai</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($kegiatanCollection as $item) :  ?>
-                    <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
-                        <?php
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Kegiatan</th>
+                <th scope="col">Pelaksanaan</th>
+                <th scope="col">Status</th>
+                <th scope="col">Nilai</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($kegiatanCollection as $item) :  ?>
+                <?php foreach ($item['kegiatan'] as $kegiatan) : $i++; ?>
+                    <?php
+                    $oid = $kegiatan->_id;
 
-                        // $sebelum = $item['kegiatan']['0']['nama'];
-                        // $namaKegiatan = json_encode($sebelum);
-                        ?>
-                        <tr>
-                            <th scope="row"><?= $i ?></th>
-                            <td><?= $kegiatan->nama ?></td>
-                            <td><?= $kegiatan->pelaksanaan ?></td>
-                            <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $kegiatan->status ?></button></td>
-                            <td><a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
-                        </tr>
-                    <?php endforeach; ?>
+                    // $sebelum = $item['kegiatan']['0']['nama'];
+                    // $namaKegiatan = json_encode($sebelum);
+                    ?>
+                    <tr>
+                        <th scope="row"><?= $i ?></th>
+                        <td><?= $kegiatan->nama ?></td>
+                        <td><?= $kegiatan->pelaksanaan ?></td>
+                        <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $kegiatan->status ?></button></td>
+                        <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
+                    </tr>
                 <?php endforeach; ?>
-                <!-- <tr>
+            <?php endforeach; ?>
+            <!-- <tr>
                     <th scope="row">2</th>
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
@@ -101,7 +79,7 @@ $i = 0;
                 </tr> -->
 
 
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 </div>

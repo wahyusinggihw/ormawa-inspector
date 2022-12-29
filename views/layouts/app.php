@@ -42,7 +42,18 @@
                 <?php
                 if (isset($_GET['page'])) {
                     $page = $_GET['page'];
-                    include("views/$page.php");
+                    $path = explode('&id=', $page);
+                    // var_dump($page);
+                    // var_dump($path2);
+                    // die;
+
+                    if (isset($path[1])) {
+                        $page = $path[0];
+                        $id = $path[1];
+                        include("views/$page.php");
+                    } else {
+                        include("views/$page.php");
+                    }
                 } else {
                     include('views/index.php');
                 }

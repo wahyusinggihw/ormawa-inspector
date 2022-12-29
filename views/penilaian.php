@@ -7,6 +7,7 @@
     </nav>
 </div>
 <div class="row">
+<<<<<<< HEAD:views/home.php
     <div class="col">
         <div class="card mb-4 mt-4">
             <div class="card-body text-center">
@@ -56,4 +57,33 @@
         </div>
     </div>
 </div>
+=======
+    <?php
+    require_once 'db/kegiatan.php';
+    $kegiatan = new Kegiatan();
+    $kegiatanCollection = $kegiatan->getAll();
+    ?>
+
+    <?php foreach ($kegiatanCollection as $item) : ?>
+        <?php
+        $sebelum = $item['kegiatan']['0']['nama'];
+        $namaKegiatan = json_encode($sebelum);
+        ?>
+        <div class="col">
+            <div class="card mb-4 mt-4">
+                <div class="card-body text-center">
+                    <h5 class="my-3"><?= $item->namaOrmawa ?></h5>
+                    <img src="public/img/profile.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    <p class="text-justify mb-4 mt-3"><?= $namaKegiatan ?></p>
+                    <!-- form that get id of item -->
+                    <div class="d-flex justify-content-center mb-2">
+                        <a class="btn btn-outline-primary ms-1 rounded-pill" href="<?php BASEURL ?> ?page=inspect&id=<?= $item->_id ?>">Inspect</i></a>
+                        <!-- <button type="submit" name="submit" class="btn btn-outline-primary ms-1 rounded-pill">Inspect <i class="bi bi-star-half"></i></button> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+>>>>>>> 7ae54c5 (sebelum ganti struktur db):views/penilaian.php
 </div>
