@@ -27,6 +27,8 @@
     <link href="public/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <link href="public/assets/css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1fd157c9f1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -34,6 +36,7 @@
     <?php
     include('views/components/header.php');
     include('views/components/sidebar.php');
+    
     ?>
     <main id="main" class="main">
 
@@ -63,6 +66,7 @@
                 ?>
             </div>
         </section>
+        
 
     </main>
 
@@ -82,6 +86,7 @@
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+    
 </body>
 
 </html>

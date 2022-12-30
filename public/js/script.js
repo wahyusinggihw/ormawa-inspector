@@ -25,8 +25,31 @@ function optionState(statusOption) {
   formButton.disabled = false; // return disabled as true whenever the input field is empty
 }
 
+
 // just verifying that the button has been clicked
 
 // formButton.addEventListener("click", () => {
 //   console.log("You entered:", document.querySelector(".form-control").value);
 // });
+
+
+  // $(document).ready(function() {
+  //   resetStarColors();
+  //   $('.fa-star').mouseover(function() {
+  //       resetStarColors();
+  
+  //       var currentIndex = parseInt($(this).data('index'));
+  //       for (var i = 0; i <= currentIndex; i++)
+  //           $('.fa-star:eq('+i+')').css('color', 'green');
+  
+  //   });
+  //   $('.fa-star').mouseleave(function() {
+  //       resetStarColors();
+  //   });
+  // });
+  
+  // function resetStarColors() {
+  //   $('.fa-star').css('color', 'white');
+  // }
+
+
