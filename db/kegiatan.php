@@ -19,6 +19,13 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->find();
     }
 
+    public function getByStatus($status)
+    {
+        return $this->kegiatanCollections->find([
+            'details.status' => $status,
+        ]);
+    }
+
     //get by id
     public function getKegiatan($id)
     {

@@ -12,6 +12,7 @@ $roleCatcher = new Services();
 $id = $_GET['id'];
 $role = $roleCatcher->roleCatcher();
 $kegiatanCollection = $kegiatans->getById($id);
+$getByStatus = $kegiatans->getByStatus('selesai');
 $i = 0;
 ?>
 
@@ -56,8 +57,8 @@ $i = 0;
                     <th scope="row"><?= $i ?></th>
                     <td><?= $nama ?></td>
                     <td><?= $pelaksanaan ?></td>
-                    <td><button type="button" class="btn btn-warning btn-sm disabled"><?= $status ?></button></td>
-                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
+                    <td><button type="button" class="btn <?php echo ($status == 'selesai' ? 'btn-success' : 'btn-warning')  ?> btn-sm"><?= $status ?></button></td>
+                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1 <?php echo ($status == 'pending' ? 'disabled' : '')  ?> "><i class="bi bi-star-half"></i></a></td>
                 </tr>
 
             <?php endforeach; ?>

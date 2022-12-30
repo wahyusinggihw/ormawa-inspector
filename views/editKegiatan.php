@@ -1,4 +1,9 @@
 <?php
+if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
+  echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
+  exit;
+}
+
 require_once 'db/kegiatan.php';
 require_once 'db/users.php';
 
@@ -15,14 +20,14 @@ foreach ($kegiatanCollection as $item) {
   $status = $item['details']['status'];
   $deskripsi = $item['details']['deskripsi'];
 }
-// var_dump($nama);
 // die;
 
 if (isset($_POST['update'])) {
+  var_dump($_POST['statusOption']);
   $status = $kegiatan->updateData($id, [
     'details.nama' => $_POST['namaKegiatan'],
     'details.tanggalPelaksanaan' => $_POST['tanggalPelaksanann'],
-    'details.status' => $_POST['statusKegiatan'],
+    'details.status' => $_POST['statusOption'],
     'details.deskripsi' => $_POST['deskripsiKegiatan'],
   ]);
 
@@ -35,6 +40,12 @@ if (isset($_POST['update'])) {
 }
 
 ?>
+
+<script>
+  $('form-select').on('change', function() {
+    alert(this.value);
+  });
+</script>
 
 <div class="pagetitle">
   <nav>
@@ -58,14 +69,17 @@ if (isset($_POST['update'])) {
           <input type="date" class="form-control" id="tanggalPelaksanann" name="tanggalPelaksanann">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="statusKegiatan">Status</label>
-          <input type="text" class="form-control" id="statusKegiatan" value="<?= $status ?>" name="statusKegiatan" readonly>
+          <label class="form-label" for="statusOption">Status</label>
+          <select class="form-select" aria-label="statusOption" name="statusOption" id="statusOption" onchange="optionState(statusOption)">
+            <option class=" form-option" selected><?= $status ?></option>
+            <option class="form-option" value="selesai">Selesai</option>
+          </select>
         </div>
         <div class="mb-3">
           <label class="form-label" for="deskripsiKegiatan">Deskripsi kegiatan</label>
           <textarea class="form-control" id="deskripsiKegiatan" name="deskripsiKegiatan" rows="3"><?= $deskripsi ?></textarea>
         </div>
-        <button type="update" name="update" class="btn btn-primary form-button" onclick="dateCheck()">Update</button>
+        <button type="update" name="update" class="btn btn-primary form-button" onclick="buttonState()">Update</button>
       </form>
     </div>
   </div>
