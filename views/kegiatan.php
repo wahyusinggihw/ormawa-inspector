@@ -51,7 +51,7 @@ $role = $roleCatcher->roleCatcher();
 <div class="row">
     <div class="card shadow py-4">
         <div class="col col-sm-2 mb-2">
-            <a href="#" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>
+            <a href="?page=addKegiatan" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -84,7 +84,10 @@ $role = $roleCatcher->roleCatcher();
                         <td><?= $nama ?></td>
                         <td><?= $pelaksanaan ?></td>
                         <td><?= $status ?></td>
-                        <td><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a><a href="<?= BASEURL ?>?page=detailKegiatan&id=<?= $kegiatan['_id'] ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a></td>
+                        <td>
+                            <a href="?page=editKegiatan&id=<?= $oid ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a>
+                            <a href="?page=detailKegiatan&id=<?= $oid ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a>
+                        </td>
                     </tr>
 
                 <?php endforeach; ?>
