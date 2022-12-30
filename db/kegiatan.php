@@ -46,6 +46,18 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->count();
     }
 
+    public function updateData($id, $data)
+    {
+        return $this->kegiatanCollections->updateOne(
+            [
+                '_id' => new MongoDB\BSON\ObjectId("$id"),
+            ],
+            [
+                '$set' => $data,
+            ],
+        );
+    }
+
     public function insertOne($data)
     {
         return $this->kegiatanCollections->insertOne($data);

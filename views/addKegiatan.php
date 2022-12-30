@@ -34,7 +34,8 @@ if (isset($_POST['submit'])) {
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Admin</a></li>
-      <li class="breadcrumb-item active">Kegiatan</li>
+      <li class="breadcrumb-item"><a href="#">Kegiatan</a></li>
+      <li class="breadcrumb-item active">Tambah Kegiatan</li>
     </ol>
   </nav>
 </div>
@@ -59,7 +60,7 @@ if (isset($_POST['submit'])) {
           <label class="form-label" for="deskripsiKegiatan">Deskripsi kegiatan</label>
           <textarea class="form-control" id="deskripsiKegiatan" name="deskripsiKegiatan" rows="3"></textarea>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary" onclick="dateCheck()">Tambah</button>
+        <button type="submit" name="submit" class="btn btn-primary form-button" onclick="dateCheck()">Tambah</button>
       </form>
     </div>
   </div>
