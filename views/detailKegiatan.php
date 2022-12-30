@@ -42,19 +42,27 @@ $i = 0;
                 </div>
             </div>
             <div class="card my-4">
-                <h6 class="mt-2 mx-2">Beri Penilaian</h6>
+                <div>
+                    <div class="card-header">Beri Penilaian</div>
+                    <div class="card-body">
+                        <span id="1" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
+                        <span id="2" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
+                        <span id="3" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
+                        <span id="4" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
+                        <span id="5" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
+                    </div>
+                </div>
                 <div class="row mb-3 text-center">
+                    <!-- <div class="col"><i class="bi bi-star"></i></div>
                     <div class="col"><i class="bi bi-star"></i></div>
                     <div class="col"><i class="bi bi-star"></i></div>
                     <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div>
+                    <div class="col"><i class="bi bi-star"></i></div> -->
                 </div>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label mx-2">Komentar</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
-                </textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="float-end mt-1 ">
                 <button type="button" class="btn btn-primary btn-sm">Post comment</button>
