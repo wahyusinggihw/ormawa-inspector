@@ -12,31 +12,17 @@ $kegiatans = new Kegiatan();
 $roleCatcher = new Services();
 $role = $roleCatcher->roleCatcher();
 
-// switch ($role) {
-//     case 'admin':
-//         echo 'anda admin';
-//         break;
 
-//     case 'bem':
-//         echo 'anda bem';
-//         break;
-
-//     case 'pokja':
-//         echo 'anda pokja';
-//         break;
-
-//     case 'hmjti':
-//         echo 'anda hmjti';
-//         break;
-
-//     case 'hmjtekin':
-//         echo 'anda hmjtekin';
-//         break;
-//     case 'mahasiswa':
-//         echo 'anda mahasiswa';
-//         break;
-// }
-// 
+if (isset($_GET['action']) == 'delete') {
+    // var_dump($_GET['id']);
+    $id = $_GET['id'];
+    $status = $kegiatans->drop($id);
+    var_dump($status->getDeletedCount());
+    if ($status->getDeletedCount()) {
+        echo ("<script>alert('Data berhasil di hapus');</script>");
+        echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
+    }
+}
 ?>
 
 <div class="pagetitle">
@@ -86,19 +72,13 @@ $role = $roleCatcher->roleCatcher();
                         <td><?= $status ?></td>
                         <td>
                             <a href="?page=editKegiatan&id=<?= $oid ?>" class="btn btn-outline-warning ms-1 "><i class="bi bi-pencil"></i></a>
-                            <a href="?page=detailKegiatan&id=<?= $oid ?>" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a>
+                            <a href="?page=kegiatan&id=<?= $oid ?>&action=delete" class="btn btn-outline-danger ms-1 "><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
 
                 <?php endforeach; ?>
+
                 <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-warning btn-sm">on going</button></td>
-                    <td><a href="<?php BASEURL ?> ?page=detailKegiatan" class="btn btn-outline-primary ms-1 "><i class="bi bi-star-half"></i></a></td>
-                </tr>
-                <tr>
                     <th scope="row">2</th>
                     <td>Pagelaran Akhir Tahun fakultas 2022</td>
                     <td>17-12-2022</td>
@@ -115,7 +95,7 @@ $role = $roleCatcher->roleCatcher();
                     <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
 
                             </i></button></td>
-                </tr> -->
+                </tr>  -->
 
 
             </tbody>

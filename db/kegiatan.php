@@ -63,8 +63,10 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->insertOne($data);
     }
 
-    public function drop()
+    public function drop($id)
     {
-        return $this->kegiatanCollections->drop();
+        return $this->kegiatanCollections->deleteOne([
+            '_id' => new MongoDB\BSON\ObjectId("$id"),
+        ],);
     }
 }
