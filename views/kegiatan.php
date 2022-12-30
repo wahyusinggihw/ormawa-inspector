@@ -44,6 +44,9 @@ if (isset($_GET['action']) == 'delete') {
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kegiatan</th>
+                    <?php
+                    echo (($_SESSION['role'] == "admin") ? '<th scope="col">Ormawa</th>'  : '');
+                    ?>
                     <th scope="col">Pelaksanaan</th>
                     <th scope="col">Status</th>
                     <th scope="col">Aksi</th>
@@ -61,6 +64,7 @@ if (isset($_GET['action']) == 'delete') {
                 <?php foreach ($cursor as $item) : $i++ ?>
                     <?php
                     $oid = $item->_id;
+                    $idOrmawa = $item->idOrmawa;
                     $nama = $item['details']['nama'];
                     $pelaksanaan = $item['details']['pelaksanaan'];
                     $status = $item['details']['status'];
@@ -68,6 +72,9 @@ if (isset($_GET['action']) == 'delete') {
                     <tr>
                         <th scope="row"><?= $i ?></th>
                         <td><?= $nama ?></td>
+                        <?php
+                        echo (($_SESSION['role'] == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
+                        ?>
                         <td><?= $pelaksanaan ?></td>
                         <td><?= $status ?></td>
                         <td>

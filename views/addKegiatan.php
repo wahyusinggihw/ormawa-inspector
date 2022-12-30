@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
       <form action="" method="POST" name="submit">
         <div class="mb-3">
           <label class="form-label" for="namaKegiatan">Nama kegiatan</label>
-          <input type="text" class="form-control" id="namaKegiatan" name="namaKegiatan">
+          <input type="text" class="form-control" id="namaKegiatan" name="namaKegiatan" required>
         </div>
         <div class="mb-3">
           <label class="form-label" for="tanggalPelaksanann">Tanggal pelaksanaan</label>
@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="mb-3">
           <label class="form-label" for="deskripsiKegiatan">Deskripsi kegiatan</label>
-          <textarea class="form-control" id="deskripsiKegiatan" name="deskripsiKegiatan" rows="3"></textarea>
+          <textarea class="form-control" id="deskripsiKegiatan" name="deskripsiKegiatan" rows="3" required></textarea>
         </div>
         <button type="submit" name="submit" class="btn btn-primary form-button" onclick="dateCheck()">Tambah</button>
       </form>
