@@ -42,22 +42,15 @@ $i = 0;
                 </div>
             </div>
             <div class="card my-4">
-                <div>
-                    <div class="card-header">Beri Penilaian</div>
-                    <div class="card-body">
-                        <span id="1" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
-                        <span id="2" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
-                        <span id="3" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
-                        <span id="4" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
-                        <span id="5" style="font-size:45px; cursor:pointer;" class="bi bi-star" onmouseover="startRating(this)" startRating="starmark(this)"></span>
-                    </div>
-                </div>
-                <div class="row mb-3 text-center">
-                    <!-- <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div>
-                    <div class="col"><i class="bi bi-star"></i></div> -->
+
+                <h6 class="mt-2 mx-2">Beri Penilaian</h6>
+                <div align="left" on>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+
                 </div>
             </div>
             <div class="mb-3">
@@ -86,3 +79,77 @@ $i = 0;
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        var rating_data = 0;
+
+        $('#add_review').click(function() {
+
+            $('#review_modal').modal('show');
+
+        });
+
+        $(document).on('mouseenter', '.submit_star', function() {
+
+            var rating = $(this).data('rating');
+
+            reset_background();
+
+            for (var count = 1; count <= rating; count++) {
+
+                $('#submit_star_' + count).addClass('text-warning');
+
+            }
+
+        });
+
+        function reset_background() {
+            for (var count = 1; count <= 5; count++) {
+
+                $('#submit_star_' + count).addClass('star-light');
+
+                $('#submit_star_' + count).removeClass('text-warning');
+
+            }
+        }
+
+        $(document).on('mouseleave', '.submit_star', function() {
+
+            reset_background();
+
+            for (var count = 1; count <= rating_data; count++) {
+
+                $('#submit_star_' + count).removeClass('star-light');
+
+                $('#submit_star_' + count).addClass('text-warning');
+            }
+
+        });
+        $(document).on('click', '.submit_star', function() {
+
+            rating_data = $(this).data('rating');
+            console.log(rating_data);
+
+        });
+        //     resetStarColors();
+        //     $('.submit_star').mouseenter(function() {
+        //         // resetStarColors();
+
+        //         var currentIndex = parseInt($(this).data('index'));
+        //         for (var i = 0; i <= currentIndex; i++)
+        //             $('.submit_star:eq('+i+')').css('color', 'green');
+
+
+
+
+        //     });
+        //     $('.submit_star').mouseleave(function() {
+        //         resetStarColors();
+        //     });
+        //     function resetStarColors() {
+        //     $('.submit_star').addClass('star-light');
+        // }
+    });
+</script>

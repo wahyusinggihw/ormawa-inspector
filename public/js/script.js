@@ -25,6 +25,7 @@ function optionState(statusOption) {
   formButton.disabled = false; // return disabled as true whenever the input field is empty
 }
 
+
 // just verifying that the button has been clicked
 
 // formButton.addEventListener("click", () => {
