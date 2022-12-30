@@ -42,6 +42,7 @@ $i = 0;
                 </div>
             </div>
             <div class="card my-4">
+
                 <h6 class="mt-2 mx-2">Beri Penilaian</h6>
                 <div align="left" on>
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
@@ -49,12 +50,12 @@ $i = 0;
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+
                 </div>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label mx-2">Komentar</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
-                </textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="float-end mt-1 ">
                 <button type="button" class="btn btn-primary btn-sm">Post comment</button>

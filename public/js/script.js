@@ -32,24 +32,30 @@ function optionState(statusOption) {
 //   console.log("You entered:", document.querySelector(".form-control").value);
 // });
 
+var count = 0;
 
-  // $(document).ready(function() {
-  //   resetStarColors();
-  //   $('.fa-star').mouseover(function() {
-  //       resetStarColors();
-  
-  //       var currentIndex = parseInt($(this).data('index'));
-  //       for (var i = 0; i <= currentIndex; i++)
-  //           $('.fa-star:eq('+i+')').css('color', 'green');
-  
-  //   });
-  //   $('.fa-star').mouseleave(function() {
-  //       resetStarColors();
-  //   });
-  // });
-  
-  // function resetStarColors() {
-  //   $('.fa-star').css('color', 'white');
-  // }
+function result() {
+  if (count != 0) {
+    document.getElementById("result").innerHTML =
+      "<h4>Rating: <label class='text-primary'>" +
+      count +
+      "</label></h4>" +
+      "<h4>Comments: </h4>" +
+      "<p>" +
+      document.getElementById("review").value +
+      "</p>";
+  } else {
+  }
+}
 
-
+function startRating(item) {
+  count = item.id[0];
+  sessionStorage.star = count;
+  for (var i = 0; i < 5; i++) {
+    if (i < count) {
+      document.getElementById(i + 1).style.color = "yellow";
+    } else {
+      document.getElementById(i + 1).style.color = "black";
+    }
+  }
+}

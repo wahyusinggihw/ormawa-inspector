@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
   $role = $roleCatcher->roleCatcher();
 
   $post_namaKegiatan = $_POST['namaKegiatan'];
-  // $post_tanggalPelaksanaan = $_POST['tanggalPelaksanaan'];
+  $post_tanggalPelaksanaan = $_POST['tanggalPelaksanaan'];
   $post_statusKegiatan = $_POST['statusKegiatan'];
   $post_deskripsiKegiatan = $_POST['deskripsiKegiatan'];
 
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     'idOrmawa' => $role,
     'details' => [
       'nama' => $post_namaKegiatan,
-      'pelaksanaan' => '10-10-2021',
+      'pelaksanaan' => $post_tanggalPelaksanaan,
       'status' => $post_statusKegiatan,
       'deskripsi' => $post_deskripsiKegiatan,
     ],
@@ -54,8 +54,8 @@ if (isset($_POST['submit'])) {
           <input type="text" class="form-control" id="namaKegiatan" name="namaKegiatan" required>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="tanggalPelaksanann">Tanggal pelaksanaan</label>
-          <input type="date" class="form-control" id="tanggalPelaksanann" name="tanggalPelaksanann">
+          <label class="form-label" for="tanggalPelaksanaan">Tanggal pelaksanaan</label>
+          <input type="date" class="form-control" id="tanggalPelaksanaan" name="tanggalPelaksanaan">
         </div>
         <div class="mb-3">
           <!-- label -->
