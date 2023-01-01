@@ -70,6 +70,28 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->insertOne($data);
     }
 
+    public function insertKomentar($id, $data)
+    {
+        return $this->kegiatanCollections->updateOne(
+            [
+                '_id' => new MongoDB\BSON\ObjectId("$id"),
+            ],
+            [
+                '$push' => $data
+            ],
+        );
+    }
+
+    public function komentarChecker($id)
+    {
+        return $this->kegiatanCollections->find(
+            [
+                '_id' => new MongoDB\BSON\ObjectId("$id"),
+                'komentars' => 1,
+            ],
+        );
+    }
+
     public function drop($id)
     {
         return $this->kegiatanCollections->deleteOne([
