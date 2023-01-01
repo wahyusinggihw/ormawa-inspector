@@ -23,11 +23,17 @@ foreach ($kegiatanCollection as $item) {
 }
 // die;
 
+
 if (isset($_POST['update'])) {
+  if ($_SESSION['role'] == "admin") {
+    $statusKondisi = $_POST['statusOption'];
+  } else {
+    $statusKondisi = $status;
+  }
   $status = $kegiatan->updateData($id, [
     'details.nama' => $_POST['namaKegiatan'],
     'details.pelaksanaan' => $_POST['tanggalPelaksanaan'],
-    'details.status' => $_POST['statusOption'],
+    'details.status' => $statusKondisi,
     'details.deskripsi' => $_POST['deskripsiKegiatan'],
   ]);
 
@@ -68,7 +74,7 @@ if (isset($_POST['update'])) {
           <label class="form-label" for="statusOption">Status</label>
           <?php if ($_SESSION['role'] == "admin" && ($status != 'selesai')) : ?>
             <select class="form-select" aria-label="statusOption" name="statusOption" id="statusOption" onchange="optionState(statusOption)">
-              <option class=" form-option" selected>pending</option>
+              <option class="form-option" selected>pending</option>
               <option class="form-option" value="selesai">selesai</option>
             </select>
           <?php else : ?>
