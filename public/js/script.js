@@ -2,6 +2,7 @@ const formInput = document.querySelector(".form-control");
 const formButton = document.querySelector(".form-button");
 const formSelect = document.querySelector(".form-select");
 const startDateInput = document.getElementById("tanggalPelaksanaan");
+const deskripsi = document.getElementById("deskripsiKegiatan");
 
 // the default state is 'disabled'
 formButton.disabled = true;
@@ -11,7 +12,12 @@ formInput.addEventListener("keyup", buttonState);
 
 startDateInput.addEventListener("change", function () {
   formButton.disabled = false;
-  console.log("Start date changed to:", this.value);
+  // console.log("Start date changed to:", this.value);
+});
+
+deskripsi.addEventListener("change", function () {
+  formButton.disabled = false;
+  // console.log("deskripsi :", this.value);
 });
 
 function buttonState() {
