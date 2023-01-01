@@ -17,6 +17,7 @@ $id = $_GET['id'];
 $kegiatanCollection = $kegiatan->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
   $nama = $item['details']['nama'];
+  $tanggal = $item['details']['pelaksanaan'];
   $status = $item['details']['status'];
   $deskripsi = $item['details']['deskripsi'];
 }
@@ -25,7 +26,7 @@ foreach ($kegiatanCollection as $item) {
 if (isset($_POST['update'])) {
   $status = $kegiatan->updateData($id, [
     'details.nama' => $_POST['namaKegiatan'],
-    'details.tanggalPelaksanaan' => $_POST['tanggalPelaksanann'],
+    'details.pelaksanaan' => $_POST['tanggalPelaksanaan'],
     'details.status' => $_POST['statusOption'],
     'details.deskripsi' => $_POST['deskripsiKegiatan'],
   ]);
@@ -39,12 +40,6 @@ if (isset($_POST['update'])) {
 }
 
 ?>
-
-<script>
-  $('form-select').on('change', function() {
-    alert(this.value);
-  });
-</script>
 
 <div class="pagetitle">
   <nav>
@@ -64,14 +59,16 @@ if (isset($_POST['update'])) {
           <input type="text" class="form-control" id="namaKegiatan" name="namaKegiatan" value="<?= $nama ?>">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="tanggalPelaksanann">Tanggal pelaksanaan</label>
-          <input type="date" class="form-control" id="tanggalPelaksanann" name="tanggalPelaksanann">
+          <!-- <label for="startDate">Start Date</label>
+          <input type="date" class="form-control" id="startDate" name="startDate"> -->
+          <label class="form-label" for="tanggalPelaksanaan">Tanggal pelaksanaan</label>
+          <input type="date" class="form-control" id="tanggalPelaksanaan" name="tanggalPelaksanaan" value="<?= $tanggal ?>">
         </div>
         <div class="mb-3">
           <label class="form-label" for="statusOption">Status</label>
           <?php if ($_SESSION['role'] == "admin" && ($status != 'selesai')) : ?>
             <select class="form-select" aria-label="statusOption" name="statusOption" id="statusOption" onchange="optionState(statusOption)">
-              <option class=" form-option" selected><?= $status ?></option>
+              <option class=" form-option" selected>pending</option>
               <option class="form-option" value="selesai">selesai</option>
             </select>
           <?php else : ?>
@@ -88,3 +85,18 @@ if (isset($_POST['update'])) {
     </div>
   </div>
 </div>
+
+<script>
+  // const startDateInput = document.getElementById('startDate');
+
+  // startDateInput.addEventListener('change', function() {
+  //   console.log('Start date changed to:', this.value);
+  // });
+
+
+  // const startDateInput = document.getElementById('tanggalPelaksanaan');
+
+  // startDateInput.addEventListener('change', function() {
+  //   console.log('Start date changed to:', this.value);
+  // });
+</script>

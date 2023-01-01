@@ -1,12 +1,18 @@
 const formInput = document.querySelector(".form-control");
 const formButton = document.querySelector(".form-button");
 const formSelect = document.querySelector(".form-select");
+const startDateInput = document.getElementById("tanggalPelaksanaan");
 
 // the default state is 'disabled'
 formButton.disabled = true;
 
 // alternative is to use "change" - explained below
 formInput.addEventListener("keyup", buttonState);
+
+startDateInput.addEventListener("change", function () {
+  formButton.disabled = false;
+  console.log("Start date changed to:", this.value);
+});
 
 function buttonState() {
   if (document.querySelector(".form-control").value === "") {
@@ -25,37 +31,8 @@ function optionState(statusOption) {
   formButton.disabled = false; // return disabled as true whenever the input field is empty
 }
 
-
 // just verifying that the button has been clicked
 
 // formButton.addEventListener("click", () => {
 //   console.log("You entered:", document.querySelector(".form-control").value);
 // });
-
-var count = 0;
-
-function result() {
-  if (count != 0) {
-    document.getElementById("result").innerHTML =
-      "<h4>Rating: <label class='text-primary'>" +
-      count +
-      "</label></h4>" +
-      "<h4>Comments: </h4>" +
-      "<p>" +
-      document.getElementById("review").value +
-      "</p>";
-  } else {
-  }
-}
-
-function startRating(item) {
-  count = item.id[0];
-  sessionStorage.star = count;
-  for (var i = 0; i < 5; i++) {
-    if (i < count) {
-      document.getElementById(i + 1).style.color = "yellow";
-    } else {
-      document.getElementById(i + 1).style.color = "black";
-    }
-  }
-}

@@ -17,6 +17,7 @@ foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
     $deskripsi = $item['details']['deskripsi'];
 }
+var_dump($_POST['rating']);
 
 $i = 0;
 ?>
@@ -131,25 +132,13 @@ $i = 0;
 
             rating_data = $(this).data('rating');
             console.log(rating_data);
-
+            // $.ajax({
+            //     method: "POST",
+            //     // url: "http://localhost/ormawa-inspector/api/kegiatan.php",
+            //     data: {
+            //         rating: rating_data
+            //     }
+            // })
         });
-        //     resetStarColors();
-        //     $('.submit_star').mouseenter(function() {
-        //         // resetStarColors();
-
-        //         var currentIndex = parseInt($(this).data('index'));
-        //         for (var i = 0; i <= currentIndex; i++)
-        //             $('.submit_star:eq('+i+')').css('color', 'green');
-
-
-
-
-        //     });
-        //     $('.submit_star').mouseleave(function() {
-        //         resetStarColors();
-        //     });
-        //     function resetStarColors() {
-        //     $('.submit_star').addClass('star-light');
-        // }
     });
 </script>
