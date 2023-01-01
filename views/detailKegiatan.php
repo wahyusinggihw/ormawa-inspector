@@ -52,6 +52,10 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if (isset($_POST['rating'])) {
+    var_dump($_POST['rating']);
+};
+
 $i = 0;
 ?>
 
@@ -201,6 +205,7 @@ $i = 0;
             // console.log(rating_data);
 
             $.ajax({
+                url: "",
                 method: "POST",
                 data: {
                     'rating': rating_data
