@@ -34,9 +34,16 @@ class Users extends DB
         return $this->usersCollections->insertOne($data);
     }
 
-    public function updateOne($data)
+    public function updateOne($id, $data)
     {
-        return $this->usersCollections->updateOne($data);
+        return $this->usersCollections->updateOne(
+            [
+                '_id' => new MongoDB\BSON\ObjectId("$id"),
+            ],
+            [
+                '$set' => $data,
+            ],
+        );
     }
 
     public function drop()

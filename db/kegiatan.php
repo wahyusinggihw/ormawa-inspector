@@ -25,6 +25,12 @@ class Kegiatan extends DB
             'details.status' => $status,
         ]);
     }
+    public function respondenChecker($id)
+    {
+        return $this->kegiatanCollections->findOne([
+            'responden.' . $id,
+        ]);
+    }
 
     //get by id
     public function getKegiatan($id)

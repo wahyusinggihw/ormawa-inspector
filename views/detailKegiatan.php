@@ -12,6 +12,7 @@ if ($_SESSION['role'] == "guest") {
 $kegiatans = new Kegiatan();
 $rate = new Rate();
 $roleCatcher = new Services();
+$users = new Users();
 $id = $_GET['idKegiatan'];
 $idOrmawa = $_GET['id'];
 $role = $roleCatcher->roleCatcher();
@@ -19,13 +20,49 @@ $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
     $deskripsi = $item['details']['deskripsi'];
+    $responden = $item['responden'];
 }
 
 // $cekKomen = $kegiatans->komentarChecker($id);
 
-// var_dump($cekKomen);
+// var_dump($_SESSION['user_id']);
 // die;
+// $isResponded = false;
 
+$currentUserId = $_SESSION['user_id'];
+
+$sudah = $kegiatans->respondenChecker($currentUserId);
+var_dump($sudah);
+
+// foreach ($sudah as $item) {
+//     var_dump($item);
+// }
+// die;
+// $isResponded = false;
+// var_dump($_SESSION['user_id']);
+// foreach ($responden as $item) {
+//     if ($item == $_SESSION['user_id']) {
+//         $isResponded = true;
+//     } else {
+//         $isResponded = false;
+//     }
+// }
+
+
+
+// if (empty($data->responden)) {
+//     $isResponded = false;
+//     // var_dump($data->isResponded);
+//     // die;
+// } else {
+//     $isResponded = $data->isResponded;
+// }
+
+
+// if ($data->role == "mahasiswa") {
+//     var_dump($data->role);
+// }
+$currentUserId = $_SESSION['user_id'];
 $currentUserName = $_SESSION['user_name'];
 
 if (isset($_POST['submit'])) {
@@ -35,6 +72,31 @@ if (isset($_POST['submit'])) {
         if ($_POST['komentarKegiatan'] == "") {
             echo ("<script>alert('Komentar tidak boleh kosong');</script>");
         } else {
+
+            if (isset($_POST['rating'])) {
+                $rating =  $_POST['rating'];
+                $subRating = '';
+                switch ($rating) {
+                    case 1:
+                        $subRating = 'rating1';
+                        break;
+                    case 2:
+                        $subRating = 'rating2';
+                        break;
+                    case 3:
+                        $subRating = 'rating3';
+                        break;
+                    case 4:
+                        $subRating = 'rating4';
+                        break;
+                    case 5:
+                        $subRating = 'rating5';;
+                        break;
+                }
+
+                $rate->updateRating($id, $subRating);
+            }
+
             $status = $kegiatans->insertKomentar(
                 $id,
                 [
@@ -44,30 +106,17 @@ if (isset($_POST['submit'])) {
                     ],
                 ]
             );
+
+            $kegiatans->updateData($id, [
+                'responden.' . $currentUserId => true,
+            ]);
+
             if ($status->getModifiedCount()) {
                 echo ("<script>alert('Komentar berhasil dikirim');</script>");
                 // echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
             }
         }
     }
-}
-
-if (isset($_POST['rating'])) {
-    $rating =  $_POST['rating'];
-    $status = $rate->updateRating($id, [
-        // 'nilai' => $rating,
-        'rating.' . $currentUserName => [
-            'rate' => $rating,
-        ],
-    ]);
-
-    var_dump($status->getModifiedCount());
-
-
-    // if ($status->get) {
-    //     echo ("<script>alert('Rating berhasil dikirim');</script>");
-    //     // echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
-    // }
 }
 
 $i = 0;
@@ -93,23 +142,31 @@ $i = 0;
                     <img src="public/img/mahasiswa.png" alt="#">
                 </div>
             </div>
-            <form action="" method="post" name="submit" class="mb-4">
-                <div class="form-label">Beri Penilaian</div>
-                <div class="mb-4">
-                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
-                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
-                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
-                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
-                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+
+            <?php if (!$isResponded) : ?>
+                <form action="" method="post" name="submit" class="mb-4">
+                    <div class="form-label">Beri Penilaian</div>
+                    <div class="mb-4">
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="komentarKegiatan">Beri komentar</label>
+                        <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3" required></textarea>
+                    </div>
+                    <div class="float-end mt-1">
+                        <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
+                    </div>
+                </form>
+            <?php else : ?>
+                <div class="text-center">
+                    <p class="fs-6 ">Anda sudah menilai!</p>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="komentarKegiatan">Beri komentar</label>
-                    <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3" required></textarea>
-                </div>
-                <div class="float-end mt-1">
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
-                </div>
-            </form>
+            <?php endif; ?>
+
         </div>
 
         <div class="col">

@@ -53,24 +53,20 @@ class Rate extends DB
         return $this->kegiatanCollections->komentars->countDocument();
     }
 
-    public function updateRating($id, $data)
+    public function updateRating($id, $subRating)
     {
+
         return $this->kegiatanCollections->updateOne(
             [
                 '_id' => new MongoDB\BSON\ObjectId("$id"),
             ],
             [
-                '$set' => $data
+
+                '$inc' => [
+                    'rate.' . $subRating . '.jumlah' => 1
+                ],
+
             ]
-
-
-            // [
-            //     'komentars.' . $currentUserName => [
-            //         'nama' => $currentUserName,
-            //         'teks' => $komentar,
-            //     ],
-            //     // 'rate' => $rate,
-            // ]
         );
     }
 
