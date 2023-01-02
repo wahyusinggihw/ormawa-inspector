@@ -1,6 +1,7 @@
 <?php
 require_once 'db/services.php';
 require_once 'db/kegiatan.php';
+require_once 'db/rate.php';
 
 if ($_SESSION['role'] == "guest") {
     echo ("<script>alert('Login dahulu untuk melakukan penilaian');</script>");
@@ -9,8 +10,10 @@ if ($_SESSION['role'] == "guest") {
 }
 
 $kegiatans = new Kegiatan();
+$rate = new Rate();
 $roleCatcher = new Services();
 $id = $_GET['idKegiatan'];
+$idOrmawa = $_GET['id'];
 $role = $roleCatcher->roleCatcher();
 $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
@@ -39,7 +42,6 @@ if (isset($_POST['submit'])) {
                         'nama' => $currentUserName,
                         'teks' => $komentar,
                     ],
-                    // 'rate' => $rate,
                 ]
             );
             if ($status->getModifiedCount()) {
@@ -47,14 +49,26 @@ if (isset($_POST['submit'])) {
                 // echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
             }
         }
-        // var_dump($rate);
-        // echo ("sumbit");
     }
 }
 
 if (isset($_POST['rating'])) {
-    var_dump($_POST['rating']);
-};
+    $rating =  $_POST['rating'];
+    $status = $rate->updateRating($id, [
+        // 'nilai' => $rating,
+        'rating.' . $currentUserName => [
+            'rate' => $rating,
+        ],
+    ]);
+
+    var_dump($status->getModifiedCount());
+
+
+    // if ($status->get) {
+    //     echo ("<script>alert('Rating berhasil dikirim');</script>");
+    //     // echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
+    // }
+}
 
 $i = 0;
 ?>
@@ -90,7 +104,7 @@ $i = 0;
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="komentarKegiatan">Beri komentar</label>
-                    <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3"></textarea>
+                    <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3" required></textarea>
                 </div>
                 <div class="float-end mt-1">
                     <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
@@ -202,15 +216,20 @@ $i = 0;
         $(document).on('click', '.submit_star', function() {
 
             rating_data = $(this).data('rating');
-            // console.log(rating_data);
+            console.log(rating_data);
+            //ajax sending rating_data
 
             $.ajax({
-                url: "",
+
                 method: "POST",
                 data: {
-                    'rating': rating_data
+                    rating: rating_data
+                },
+                success: function(data) {
+                    console.log(data);
                 }
             });
+
         });
 
     });

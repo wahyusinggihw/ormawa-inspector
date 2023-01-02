@@ -1,7 +1,7 @@
 <?php
 require_once 'db/db.php';
 
-class Kegiatan extends DB
+class Rate extends DB
 {
     public function __construct()
     {
@@ -53,15 +53,24 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->komentars->countDocument();
     }
 
-    public function updateData($id, $data)
+    public function updateRating($id, $data)
     {
         return $this->kegiatanCollections->updateOne(
             [
                 '_id' => new MongoDB\BSON\ObjectId("$id"),
             ],
             [
-                '$set' => $data,
-            ],
+                '$set' => $data
+            ]
+
+
+            // [
+            //     'komentars.' . $currentUserName => [
+            //         'nama' => $currentUserName,
+            //         'teks' => $komentar,
+            //     ],
+            //     // 'rate' => $rate,
+            // ]
         );
     }
 

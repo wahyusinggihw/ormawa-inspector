@@ -17,4 +17,13 @@ class Komentar extends Kegiatan
             ],
         );
     }
+
+    public function deleteKomentar($id)
+    {
+        return $this->kegiatanCollections->deleteOne(
+            [
+                '_id' => new MongoDB\BSON\ObjectId($id),
+            ],
+        );
+    }
 }
