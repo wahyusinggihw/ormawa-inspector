@@ -26,53 +26,23 @@ foreach ($kegiatanCollection as $item) {
 $currentUserId = $_SESSION['user_id'];
 $currentUserName = $_SESSION['user_name'];
 $currentUserEmail = $_SESSION['user_email'];
-// $respondenDocuments = [];
-// foreach ($responden as $item) {
-//     $item;
-//     var_dump($item);
-// }
+
+// $hasilRating = $rate->totalRating($id);
+// var_dump($hasilRating);
+// die;
+// $rate->totalRating($id);
+// var_dump($rate);
 
 $cursor = $kegiatans->respondenChecker();
-if ($cursor) {
-    $isResponded = true;
-} else {
-    $isResponded = false;
-}
-
-// var_dump($isResponded);
-
-
-
-
-// foreach ($sudah as $item) {
-//     var_dump($item);
-// }
+// var_dump($cursor);
 // die;
-// $isResponded = false;
-// var_dump($_SESSION['user_id']);
-// foreach ($responden as $item) {
-//     if ($item == $_SESSION['user_id']) {
-//         $isResponded = true;
-//     } else {
-//         $isResponded = false;
-//     }
-// }
-
-
-
-// if (empty($data->responden)) {
-//     $isResponded = false;
-//     // var_dump($data->isResponded);
-//     // die;
+// if ($cursor) {
+//     $isResponded = true;
 // } else {
-//     $isResponded = $data->isResponded;
+//     $isResponded = false;
 // }
 
-
-// if ($data->role == "mahasiswa") {
-//     var_dump($data->role);
-// }
-
+// die;
 
 if (isset($_POST['rating'])) {
     $rating =  $_POST['rating'];
@@ -95,16 +65,24 @@ if (isset($_POST['rating'])) {
             break;
     }
     $_SESSION['subrating'] = $subRating;
+    $_SESSION['rating'] = $rating;
 }
 
 if (isset($_POST['submit'])) {
-    // var_dump($_POST['komentarKegiatan']);
+
+    settype($_SESSION['rating'], "integer");
+
     if (isset($_POST['komentarKegiatan'])) {
         $komentar = $_POST['komentarKegiatan'];
         if ($_POST['komentarKegiatan'] == "") {
             echo ("<script>alert('Komentar tidak boleh kosong');</script>");
         } else {
-            $rate->updateRating($id, $_SESSION['subrating']);
+            $rate->updateRating([
+                'idKegiatan' => new MongoDB\BSON\ObjectId("$id"),
+                'userId' => $_SESSION['user_id'],
+                'rating' => $_SESSION['rating'],
+
+            ]);
 
             $status = $kegiatans->insertKomentar(
                 $id,
@@ -184,9 +162,9 @@ $i = 0;
             <div class="card mt-5 mb-2 mx-3">
                 <p class="font-weight-bold mx-3 my-3"><?= $nama ?></p>
                 <div class="row gx-1 text-left mx-3 my-3">
-                    <div class="col "><i class="bi bi-people-fill">500</i></div>
-                    <div class="col"><i class="bi bi-star-half"> 4.8</i></div>
-                    <div class="col"><i class="bi bi-chat-dots"></i></div>
+                    <!-- <div class="col "><i class="bi bi-people-fill">500</i></div> -->
+                    <div class="col"><i class="bi bi-star-half"><?= $hasilRating ?></i></div>
+                    <!-- <div class="col"><i class="bi bi-chat-dots"></i></div> -->
                 </div>
             </div>
             <div class="card mt-5 mb-2 mx-3">

@@ -28,27 +28,39 @@ class Kegiatan extends DB
     public function respondenChecker()
     {
         $currentUserId = $_SESSION['user_id'];
+        $stringId = (string) $currentUserId;
         $kegiatan = $this->kegiatanCollections->findOne([
-            "responden." . $currentUserId . ".id" => new MongoDB\BSON\ObjectId("$currentUserId"),
+            "responden." . $stringId . ".id" => new MongoDB\BSON\ObjectId("$stringId"),
         ]);
         // $ids = new MongoDB\BSON\ObjectId("$currentUserId")
         // var_dump("responden." . $currentUserId . ".id" . $ids);
         // die;
-        $ids = $currentUserId;
-        $stringId = (string)$ids;
-        if (empty($kegiatan)) {
-            return false;
-        } else {
-            // var_dump($stringId);
-            // die;
-            // var_dump($kegiatan->responden->$stringId->id);
-            // die;
-            if ($kegiatan->responden->$stringId->id == $currentUserId) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+
+        $stringOid = (string) $kegiatan->responden->$stringId->id;
+        var_dump($stringId);
+        var_dump($stringOid);
+        // die;
+
+        // die;
+        // if ($stringOid != $currentUserId) {
+        //     return false;
+        // } else {
+        //     return true;
+        // }
+        // if (empty($kegiatan)) {
+        //     return false;
+        //     exit;
+        // } else {
+        // var_dump($stringId);
+        // die;
+        // var_dump($kegiatan->responden->$stringId->id);
+        // die;
+        // if ($kegiatan->responden->$stringId->id == $currentUserId) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        // }
 
         // if ($kegiatan != null) {
         //     return true;
