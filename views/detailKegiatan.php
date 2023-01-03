@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
             if ($status->getModifiedCount()) {
                 echo ("<script>alert('Komentar berhasil dikirim');</script>");
                 // TINGGAL BENERIN REDIRECT AGAR PERUBAHA DAPAT TER REFRESH
-                echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan&id=' . $idOrmawa . '$idKegiatan=' . $id . "';</script>");
+                echo ("<script>window.location.href = window.location.href;</script>");
             }
         }
     }
