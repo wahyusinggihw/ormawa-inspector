@@ -25,12 +25,49 @@ class Kegiatan extends DB
             'details.status' => $status,
         ]);
     }
-    public function respondenChecker($id)
+    public function respondenChecker()
     {
-        return $this->kegiatanCollections->findOne([
-            'responden.' . $id,
+        $currentUserId = $_SESSION['user_id'];
+        $kegiatan = $this->kegiatanCollections->findOne([
+            "responden." . $currentUserId . ".id" => new MongoDB\BSON\ObjectId("$currentUserId"),
         ]);
+        // $ids = new MongoDB\BSON\ObjectId("$currentUserId")
+        // var_dump("responden." . $currentUserId . ".id" . $ids);
+        // die;
+        $ids = $currentUserId;
+        $stringId = (string)$ids;
+        if (empty($kegiatan)) {
+            return false;
+        } else {
+            // var_dump($stringId);
+            // die;
+            // var_dump($kegiatan->responden->$stringId->id);
+            // die;
+            if ($kegiatan->responden->$stringId->id == $currentUserId) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // if ($kegiatan != null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        // $responden = $kegiatan->responden;
+        // $respondenArr = array_map(function ($responden) {
+        //     return $responden->id;
+        // }, $responden);
+        // var_dump($respondenArr);
+        // die;
+        // if (in_array($currentUserId, $respondenArr)) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
     }
+
 
     //get by id
     public function getKegiatan($id)

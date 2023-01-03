@@ -20,19 +20,29 @@ $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
     $deskripsi = $item['details']['deskripsi'];
-    $responden = $item['responden'];
+    // $responden = $item['responden'];
 }
 
-// $cekKomen = $kegiatans->komentarChecker($id);
-
-// var_dump($_SESSION['user_id']);
-// die;
-// $isResponded = false;
-
 $currentUserId = $_SESSION['user_id'];
+$currentUserName = $_SESSION['user_name'];
+$currentUserEmail = $_SESSION['user_email'];
+// $respondenDocuments = [];
+// foreach ($responden as $item) {
+//     $item;
+//     var_dump($item);
+// }
 
-$sudah = $kegiatans->respondenChecker($currentUserId);
-var_dump($sudah);
+$cursor = $kegiatans->respondenChecker();
+if ($cursor) {
+    $isResponded = true;
+} else {
+    $isResponded = false;
+}
+
+// var_dump($isResponded);
+
+
+
 
 // foreach ($sudah as $item) {
 //     var_dump($item);
@@ -62,8 +72,30 @@ var_dump($sudah);
 // if ($data->role == "mahasiswa") {
 //     var_dump($data->role);
 // }
-$currentUserId = $_SESSION['user_id'];
-$currentUserName = $_SESSION['user_name'];
+
+
+if (isset($_POST['rating'])) {
+    $rating =  $_POST['rating'];
+    $subRating = '';
+    switch ($rating) {
+        case 1:
+            $subRating = 'rating1';
+            break;
+        case 2:
+            $subRating = 'rating2';
+            break;
+        case 3:
+            $subRating = 'rating3';
+            break;
+        case 4:
+            $subRating = 'rating4';
+            break;
+        case 5:
+            $subRating = 'rating5';;
+            break;
+    }
+    $_SESSION['subrating'] = $subRating;
+}
 
 if (isset($_POST['submit'])) {
     // var_dump($_POST['komentarKegiatan']);
@@ -72,30 +104,7 @@ if (isset($_POST['submit'])) {
         if ($_POST['komentarKegiatan'] == "") {
             echo ("<script>alert('Komentar tidak boleh kosong');</script>");
         } else {
-
-            if (isset($_POST['rating'])) {
-                $rating =  $_POST['rating'];
-                $subRating = '';
-                switch ($rating) {
-                    case 1:
-                        $subRating = 'rating1';
-                        break;
-                    case 2:
-                        $subRating = 'rating2';
-                        break;
-                    case 3:
-                        $subRating = 'rating3';
-                        break;
-                    case 4:
-                        $subRating = 'rating4';
-                        break;
-                    case 5:
-                        $subRating = 'rating5';;
-                        break;
-                }
-
-                $rate->updateRating($id, $subRating);
-            }
+            $rate->updateRating($id, $_SESSION['subrating']);
 
             $status = $kegiatans->insertKomentar(
                 $id,
@@ -108,12 +117,16 @@ if (isset($_POST['submit'])) {
             );
 
             $kegiatans->updateData($id, [
-                'responden.' . $currentUserId => true,
+                'responden.' . $currentUserId => [
+                    'id' => $currentUserId,
+                    'nama' => $currentUserName,
+                ],
             ]);
 
             if ($status->getModifiedCount()) {
                 echo ("<script>alert('Komentar berhasil dikirim');</script>");
-                // echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
+                // TINGGAL BENERIN REDIRECT AGAR PERUBAHA DAPAT TER REFRESH
+                echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan&id=' . $idOrmawa . '$idKegiatan=' . $id . "';</script>");
             }
         }
     }
@@ -155,16 +168,14 @@ $i = 0;
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="komentarKegiatan">Beri komentar</label>
-                        <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3" required></textarea>
+                        <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3"></textarea>
                     </div>
                     <div class="float-end mt-1">
                         <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
                     </div>
                 </form>
             <?php else : ?>
-                <div class="text-center">
-                    <p class="fs-6 ">Anda sudah menilai!</p>
-                </div>
+                <h1 class="fs-6 text-center">Anda sudah menilai!</h1>
             <?php endif; ?>
 
         </div>
@@ -273,12 +284,12 @@ $i = 0;
         $(document).on('click', '.submit_star', function() {
 
             rating_data = $(this).data('rating');
-            console.log(rating_data);
+            // console.log(rating_data);
             //ajax sending rating_data
 
             $.ajax({
-
-                method: "POST",
+                type: "POST",
+                // method: "POST",
                 data: {
                     rating: rating_data
                 },
