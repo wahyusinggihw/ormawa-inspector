@@ -27,14 +27,14 @@ $currentUserId = $_SESSION['user_id'];
 $currentUserName = $_SESSION['user_name'];
 $currentUserEmail = $_SESSION['user_email'];
 
-// $hasilRating = $rate->totalRating($id);
+$hasilRating = $rate->totalRating($id);
 // var_dump($hasilRating);
 // die;
 // $rate->totalRating($id);
 // var_dump($rate);
 
-$cursor = $kegiatans->respondenChecker();
-// var_dump($cursor);
+$cursor = $kegiatans->respondenChecker($id);
+var_dump($cursor);
 // die;
 // if ($cursor) {
 //     $isResponded = true;

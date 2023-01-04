@@ -25,23 +25,36 @@ class Kegiatan extends DB
             'details.status' => $status,
         ]);
     }
-    public function respondenChecker()
+    public function respondenChecker($id)
     {
         $currentUserId = $_SESSION['user_id'];
         $stringId = (string) $currentUserId;
-        $kegiatan = $this->kegiatanCollections->findOne([
-            "responden." . $stringId . ".id" => new MongoDB\BSON\ObjectId("$stringId"),
+        $status = $this->kegiatanCollections->findOne([
+            '_id' => new MongoDB\BSON\ObjectId("$id"),
+            // ['responden.63ad365d398e9819c5be0fd2' => ['$exists' => true]]
+
         ]);
+        // if (isset($status['responden']) && array_key_exists($stringId, $status['responden'])) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        if (isset($status['responden']) && isset($status['responden']->{$stringId})) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // var_dump($status);
+        // die;
         // $ids = new MongoDB\BSON\ObjectId("$currentUserId")
         // var_dump("responden." . $currentUserId . ".id" . $ids);
         // die;
 
-        $stringOid = (string) $kegiatan->responden->$stringId->id;
-        var_dump($stringId);
-        var_dump($stringOid);
-        // die;
-
-        // die;
+        // $stringOid = (string) $kegiatan->responden->$stringId->id;
+        // // var_dump($stringId);
+        // // var_dump($stringOid);
+        // // die;
         // if ($stringOid != $currentUserId) {
         //     return false;
         // } else {
