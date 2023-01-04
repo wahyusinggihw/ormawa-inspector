@@ -9,7 +9,7 @@
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
         <li class="dropdown-header">
             <h6><?= $_SESSION["user_email"]; ?></h6>
-            <span><?= $_SESSION["role"] ?></span>
+            <span><?= $_SESSION["user_role"] ?></span>
         </li>
         <!-- <li>
             <hr class="dropdown-divider">

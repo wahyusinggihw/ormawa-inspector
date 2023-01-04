@@ -1,19 +1,17 @@
 <?php
-if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "mahasiswa" || $_SESSION['user_role'] == "guest") {
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
     exit;
 }
 ?>
 
 <?php
-require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 require_once 'db/rate.php';
 
 $kegiatans = new Kegiatan();
 $rate = new Rate();
-$roleCatcher = new Services();
-$role = $roleCatcher->roleCatcher();
+$role = $_SESSION['user_role'];
 
 if (isset($_GET['action']) == 'delete') {
     // var_dump($_GET['id']);
@@ -41,7 +39,7 @@ if (isset($_GET['action']) == 'delete') {
     <div class="card shadow py-4">
         <div class="col col-sm-2 mb-2">
             <?php
-            echo (($_SESSION['role'] != "admin") ? ' <a href="?page=addKegiatan" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>'  : '');
+            echo (($role != "admin") ? ' <a href="?page=addKegiatan" class="btn btn-primary ms-1 ">Tambah kegiatan</i></a>'  : '');
             ?>
 
         </div>
@@ -51,7 +49,7 @@ if (isset($_GET['action']) == 'delete') {
                     <th scope="col">No</th>
                     <th scope="col">Kegiatan</th>
                     <?php
-                    echo (($_SESSION['role'] == "admin") ? '<th scope="col">Ormawa</th>'  : '');
+                    echo (($role == "admin") ? '<th scope="col">Ormawa</th>'  : '');
                     ?>
                     <th scope="col">Pelaksanaan</th>
                     <th scope="col">Status</th>
@@ -79,7 +77,7 @@ if (isset($_GET['action']) == 'delete') {
                         <th scope="row"><?= $i ?></th>
                         <td><?= $nama ?></td>
                         <?php
-                        echo (($_SESSION['role'] == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
+                        echo (($role == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
                         ?>
                         <td><?= $pelaksanaan ?></td>
                         <td><button type="button" class="btn <?php echo ($status == 'selesai' ? 'btn-success' : 'btn-warning')  ?> btn-sm"><?= $status ?></button></td>
@@ -90,26 +88,6 @@ if (isset($_GET['action']) == 'delete') {
                     </tr>
 
                 <?php endforeach; ?>
-
-                <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-secondary btn-sm">waitting</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
-
-                            </i></button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-success btn-sm">terlaksana</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
-
-                            </i></button></td>
-                </tr>  -->
-
 
             </tbody>
         </table>

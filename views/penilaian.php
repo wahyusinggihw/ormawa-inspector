@@ -14,10 +14,7 @@
     ?>
 
     <?php foreach ($ormawaCollections as $item) : ?>
-        <?php
-        // $sebelum = $item['kegiatan']['0']['nama'];
-        // $namaKegiatan = json_encode($sebelum);
-        ?>
+
         <div class="col">
             <div class="card mb-4 mt-4">
                 <div class="card-body text-center">

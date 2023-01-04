@@ -1,5 +1,5 @@
 <div class="pagetitle">
-    <h1>Selamat Datang, <?= $_SESSION["role"] ?></h1>
+    <h1>Selamat Datang, <?= $_SESSION["user_role"] ?></h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>

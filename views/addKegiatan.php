@@ -1,17 +1,15 @@
 <?php
-if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "mahasiswa" || $_SESSION['user_role'] == "guest") {
   echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
   exit;
 }
 
 require_once 'db/kegiatan.php';
-require_once 'db/services.php';
 
 
 if (isset($_POST['submit'])) {
-  $roleCatcher = new Services();
   $kegiatan = new Kegiatan();
-  $role = $roleCatcher->roleCatcher();
+  $role = $_SESSION['user_role'];
 
   $post_namaKegiatan = $_POST['namaKegiatan'];
   $post_tanggalPelaksanaan = $_POST['tanggalPelaksanaan'];

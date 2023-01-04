@@ -1,28 +1,20 @@
 <?php
-if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "mahasiswa" || $_SESSION['user_role'] == "guest") {
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
     exit;
 }
 ?>
 
 <?php
-require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 require_once 'db/rate.php';
 
 
 $kegiatans = new Kegiatan();
-$roleCatcher = new Services();
 $rate = new Rate();
-$role = $roleCatcher->roleCatcher();
-
+$role = $_SESSION['user_role'];
 $id = $_GET['id'];
-// $rating = $rate->totalRatingReview($id);
 
-$kegiatanCollection = $kegiatans->getByIdRating($id);
-
-// var_dump($rating);
-// die;
 $i = 0;
 ?>
 
@@ -46,7 +38,7 @@ $i = 0;
                     <th scope="col">No</th>
                     <th scope="col">Kegiatan</th>
                     <?php
-                    echo (($_SESSION['role'] == "admin") ? '<th scope="col">Ormawa</th>'  : '');
+                    echo (($role == "admin") ? '<th scope="col">Ormawa</th>'  : '');
                     ?>
                     <th scope="col">Pelaksanaan</th>
                     <th scope="col">totalRating</th>
@@ -55,11 +47,11 @@ $i = 0;
             </thead>
             <tbody>
                 <?php
-                // if ($role == "admin") {
-                //     $cursor = $kegiatans->getAll();
-                // } else {
-                //     $cursor = $kegiatans->getById($role);
-                // }
+                if ($role == "admin") {
+                    $kegiatanCollection = $kegiatans->getAllRating();
+                } else {
+                    $kegiatanCollection = $kegiatans->getByIdRating($id);
+                }
                 $i = 0;
                 ?>
                 <?php foreach ($kegiatanCollection as $item) : $i++ ?>
@@ -74,7 +66,7 @@ $i = 0;
                         <th scope="row"><?= $i ?></th>
                         <td><?= $nama ?></td>
                         <?php
-                        echo (($_SESSION['role'] == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
+                        echo (($role == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
                         ?>
                         <td><?= $pelaksanaan ?></td>
                         <td><?= $totalRating ?></td>

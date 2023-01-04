@@ -12,14 +12,14 @@ class Rate extends DB
         $this->rateCollections = $this->db->rates;
     }
 
-    public function kegiatanCollections()
+    public function rateCollections()
     {
-        return $this->kegiatanCollections;
+        return $this->rateCollections;
     }
 
     public function getAll()
     {
-        return $this->kegiatanCollections->find();
+        return $this->rateCollections->find();
     }
 
     //get by id
@@ -52,7 +52,8 @@ class Rate extends DB
                     '$group' => ['_id' => null, 'totalRating' => ['$sum' => '$rating'], 'count' => ['$sum' => 1]]
                 ],
                 [
-                    '$project' => ['_id' => 0, 'averageRating' => ['$divide' => ['$totalRating', '$count']]]
+                    // '$project' => ['_id' => 0, 'averageRating' => ['$divide' => ['$totalRating', '$count']]]
+                    '$project' => ['_id' => 0, 'averageRating' => ['$round' => [['$divide' => ['$totalRating', '$count']], 1]]]
                 ]
             ]);
 
@@ -103,39 +104,41 @@ class Rate extends DB
         }
     }
 
-    public function insertOne($data)
-    {
-        return $this->kegiatanCollections->insertOne($data);
-    }
-
-    public function insertKomentar($id, $data)
-    {
-        return $this->kegiatanCollections->updateOne(
-            [
-                '_id' => new MongoDB\BSON\ObjectId("$id"),
-            ],
-            [
-                '$push' => $data
-            ],
-        );
-    }
-
-    public function komentarChecker($id)
-    {
-        return $this->kegiatanCollections->find(
-            [
-                '_id' => new MongoDB\BSON\ObjectId("$id"),
-                'komentars' => 1,
-            ],
-        );
-    }
-
     public function drop($id)
     {
         return $this->rateCollections->deleteMany([
             'idKegiatan' => new MongoDB\BSON\ObjectId("$id"),
         ],);
     }
+
+    // public function insertOne($data)
+    // {
+    //     return $this->kegiatanCollections->insertOne($data);
+    // }
+
+    // public function insertKomentar($id, $data)
+    // {
+    //     return $this->kegiatanCollections->updateOne(
+    //         [
+    //             '_id' => new MongoDB\BSON\ObjectId("$id"),
+    //         ],
+    //         [
+    //             '$push' => $data
+    //         ],
+    //     );
+    // }
+
+    // public function komentarChecker($id)
+    // {
+    //     return $this->kegiatanCollections->find(
+    //         [
+    //             '_id' => new MongoDB\BSON\ObjectId("$id"),
+    //             'komentars' => 1,
+    //         ],
+    //     );
+    // }
+
+
 
     // public function totalRating()
     // {

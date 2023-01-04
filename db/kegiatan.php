@@ -25,74 +25,22 @@ class Kegiatan extends DB
             'details.status' => $status,
         ]);
     }
+
     public function respondenChecker($id)
     {
         $currentUserId = $_SESSION['user_id'];
         $stringId = (string) $currentUserId;
         $status = $this->kegiatanCollections->findOne([
             '_id' => new MongoDB\BSON\ObjectId("$id"),
-            // ['responden.63ad365d398e9819c5be0fd2' => ['$exists' => true]]
 
         ]);
-        // if (isset($status['responden']) && array_key_exists($stringId, $status['responden'])) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
+
         if (isset($status['responden']) && isset($status['responden']->{$stringId})) {
             return true;
         } else {
             return false;
         }
-
-        // var_dump($status);
-        // die;
-        // $ids = new MongoDB\BSON\ObjectId("$currentUserId")
-        // var_dump("responden." . $currentUserId . ".id" . $ids);
-        // die;
-
-        // $stringOid = (string) $kegiatan->responden->$stringId->id;
-        // // var_dump($stringId);
-        // // var_dump($stringOid);
-        // // die;
-        // if ($stringOid != $currentUserId) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
-        // if (empty($kegiatan)) {
-        //     return false;
-        //     exit;
-        // } else {
-        // var_dump($stringId);
-        // die;
-        // var_dump($kegiatan->responden->$stringId->id);
-        // die;
-        // if ($kegiatan->responden->$stringId->id == $currentUserId) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-        // }
-
-        // if ($kegiatan != null) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-        // $responden = $kegiatan->responden;
-        // $respondenArr = array_map(function ($responden) {
-        //     return $responden->id;
-        // }, $responden);
-        // var_dump($respondenArr);
-        // die;
-        // if (in_array($currentUserId, $respondenArr)) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
     }
-
 
     //get by id
     public function getKegiatan($id)
@@ -108,6 +56,12 @@ class Kegiatan extends DB
             'idOrmawa' => $id,
         ]);
     }
+
+    public function getAllRating()
+    {
+        return $this->kegiatanCollections->find(['totalRating' => ['$exists' => true]]);
+    }
+
     public function getByIdRating($id)
     {
         return $this->kegiatanCollections->find(['idOrmawa' => $id, 'totalRating' => ['$exists' => true]]);
@@ -118,11 +72,6 @@ class Kegiatan extends DB
         return $this->kegiatanCollections->find([
             'role' => $role,
         ]);
-    }
-
-    public function count()
-    {
-        return $this->kegiatanCollections->komentars->countDocument();
     }
 
     public function updateData($id, $data)
@@ -150,16 +99,6 @@ class Kegiatan extends DB
             ],
             [
                 '$push' => $data
-            ],
-        );
-    }
-
-    public function komentarChecker($id)
-    {
-        return $this->kegiatanCollections->find(
-            [
-                '_id' => new MongoDB\BSON\ObjectId("$id"),
-                'komentars' => 1,
             ],
         );
     }

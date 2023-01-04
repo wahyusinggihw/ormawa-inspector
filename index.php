@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-isset($_SESSION['role']) ? $_SESSION['role'] : $_SESSION['role'] = "guest";
+isset($_SESSION['user_role']) ? $_SESSION['user_role'] : $_SESSION['user_role'] = "guest";
 
 // if (!session_id()) {
 // }

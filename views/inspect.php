@@ -1,16 +1,14 @@
 <?php
-if ($_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "guest") {
     echo ("<script>alert('Login dahulu untuk melakukan penilaian');</script>");
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=login' . "';</script>");
     exit;
 }
 
-require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 $kegiatans = new Kegiatan();
-$roleCatcher = new Services();
 $id = $_GET['id'];
-$role = $roleCatcher->roleCatcher();
+$role = $_SESSION['user_role'];
 $kegiatanCollection = $kegiatans->getById($id);
 $getByStatus = $kegiatans->getByStatus('selesai');
 $i = 0;
@@ -50,9 +48,8 @@ $i = 0;
                 $nama = $item['details']['nama'];
                 $pelaksanaan = $item['details']['pelaksanaan'];
                 $status = $item['details']['status'];
-                // $sebelum = $item['kegiatan']['0']['nama'];
-                // $namaKegiatan = json_encode($sebelum);
                 ?>
+
                 <tr>
                     <th scope="row"><?= $i ?></th>
                     <td><?= $nama ?></td>
@@ -62,25 +59,6 @@ $i = 0;
                 </tr>
 
             <?php endforeach; ?>
-            <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-secondary btn-sm">waitting</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
-
-                            </i></button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Pagelaran Akhir Tahun fakultas 2022</td>
-                    <td>17-12-2022</td>
-                    <td><button type="button" class="btn btn-success btn-sm">terlaksana</button></td>
-                    <td><button type="button" class="btn btn-primary "><i class="bi bi-star-half">
-
-                            </i></button></td>
-                </tr> -->
-
 
         </tbody>
     </table>

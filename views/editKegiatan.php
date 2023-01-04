@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "mahasiswa" || $_SESSION['user_role'] == "guest") {
   echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
   exit;
 }
@@ -8,9 +8,7 @@ require_once 'db/kegiatan.php';
 require_once 'db/users.php';
 
 $kegiatan = new Kegiatan();
-// var_dump($_GET['id']);
-// die;
-// $kegiatan->getKegiatan($_GET['id']);
+
 $id = $_GET['id'];
 
 // ambil data dari database
@@ -21,11 +19,9 @@ foreach ($kegiatanCollection as $item) {
   $status = $item['details']['status'];
   $deskripsi = $item['details']['deskripsi'];
 }
-// die;
-
 
 if (isset($_POST['update'])) {
-  if ($_SESSION['role'] == "admin") {
+  if ($_SESSION['user_role'] == "admin") {
     $statusKondisi = $_POST['statusOption'];
   } else {
     $statusKondisi = $status;
@@ -72,7 +68,7 @@ if (isset($_POST['update'])) {
         </div>
         <div class="mb-3">
           <label class="form-label" for="statusOption">Status</label>
-          <?php if ($_SESSION['role'] == "admin" && ($status != 'selesai')) : ?>
+          <?php if ($_SESSION['user_role'] == "admin" && ($status != 'selesai')) : ?>
             <select class="form-select" aria-label="statusOption" name="statusOption" id="statusOption" onchange="optionState(statusOption)">
               <option class="form-option" selected>pending</option>
               <option class="form-option" value="selesai">selesai</option>

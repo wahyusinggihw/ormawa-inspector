@@ -1,9 +1,8 @@
 <?php
-require_once 'db/services.php';
 require_once 'db/kegiatan.php';
 require_once 'db/rate.php';
 
-if ($_SESSION['role'] == "guest") {
+if ($_SESSION['user_role'] == "guest") {
     echo ("<script>alert('Login dahulu untuk melakukan penilaian');</script>");
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=login' . "';</script>");
     exit;
@@ -11,11 +10,9 @@ if ($_SESSION['role'] == "guest") {
 
 $kegiatans = new Kegiatan();
 $rate = new Rate();
-$roleCatcher = new Services();
 $users = new Users();
 $id = $_GET['idKegiatan'];
 $idOrmawa = $_GET['id'];
-$role = $roleCatcher->roleCatcher();
 $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
@@ -28,7 +25,7 @@ foreach ($kegiatanCollection as $item) {
     }
     // $responden = $item['responden'];
 }
-$currentUserRole = $_SESSION['role'];
+$currentUserRole = $_SESSION['user_role'];
 $currentUserId = $_SESSION['user_id'];
 $currentUserName = $_SESSION['user_name'];
 $currentUserEmail = $_SESSION['user_email'];
@@ -40,8 +37,7 @@ $hasilRating = $rate->totalRating($id);
 // var_dump($rate);
 
 $cursor = $kegiatans->respondenChecker($id);
-// var_dump($cursor);
-// die;
+
 if ($cursor) {
     $isResponded = true;
 } else {

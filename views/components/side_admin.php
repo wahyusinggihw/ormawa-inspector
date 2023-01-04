@@ -1,5 +1,5 @@
 <?php
-$id = $_SESSION['role'];
+$id = $_SESSION['user_role'];
 
 ?>
 <li class="nav-heading">Admin</li>
