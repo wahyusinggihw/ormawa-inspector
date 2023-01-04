@@ -1,5 +1,6 @@
 <?php
 require_once 'db/db.php';
+require_once 'db/kegiatan.php';
 
 use  MongoDB\BSON\ObjectId;
 
@@ -8,7 +9,6 @@ class Rate extends DB
     public function __construct()
     {
         parent::__construct();
-        $this->kegiatanCollections = $this->db->kegiatans;
         $this->rateCollections = $this->db->rates;
     }
 
@@ -22,56 +22,13 @@ class Rate extends DB
         return $this->kegiatanCollections->find();
     }
 
-    public function getByStatus($status)
-    {
-        return $this->kegiatanCollections->find([
-            'details.status' => $status,
-        ]);
-    }
-
     //get by id
-    public function getKegiatan($id)
-    {
-        return $this->kegiatanCollections->find([
-            "_id" => new MongoDB\BSON\ObjectId("$id"),
-
-        ]);
-    }
     public function getById($id)
     {
         return $this->rateCollections->find([
             'idOrmawa' => $id,
         ]);
     }
-
-    public  function getByRole($role)
-    {
-        return $this->kegiatanCollections->find([
-            'role' => $role,
-        ]);
-    }
-
-    public function count()
-    {
-        return $this->kegiatanCollections->komentars->countDocument();
-    }
-
-    // public function updateRating($id, $subRating)
-    // {
-
-    //     return $this->kegiatanCollections->updateOne(
-    //         [
-    //             '_id' => new MongoDB\BSON\ObjectId("$id"),
-    //         ],
-    //         [
-
-    //             '$inc' => [
-    //                 'rate.' . $subRating . '.jumlah' => 1
-    //             ],
-
-    //         ]
-    //     );
-    // }
 
     // ke ratings collection
     public function updateRating($data)
@@ -86,7 +43,6 @@ class Rate extends DB
     public function totalRating($id)
     {
         // return 0;
-
         if (!isset($rateCollections)) {
             $cursor = $this->rateCollections->aggregate([
                 [
@@ -103,6 +59,10 @@ class Rate extends DB
             if (isset($cursor)) {
                 foreach ($cursor as $doc) {
                     $averageRating = $doc['averageRating'];
+                    $kegiatanCollection = new Kegiatan();
+                    $kegiatanCollection->updateData($id, [
+                        'totalRating' => $averageRating,
+                    ]);
                     return $averageRating;
                 }
             } else {

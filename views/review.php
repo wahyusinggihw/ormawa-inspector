@@ -17,13 +17,10 @@ $rate = new Rate();
 $role = $roleCatcher->roleCatcher();
 
 $id = $_GET['id'];
-$rating = $rate->totalRatingReview($id);
-$rateCollections = $rate->getById($id);
+// $rating = $rate->totalRatingReview($id);
 
-// $kegiatanCollection = $kegiatans->getByIdKomentar($id);
-// foreach ($kegiatanCollection as $item) {
-//     $komentars = $item['komentars'];
-// }
+$kegiatanCollection = $kegiatans->getByIdRating($id);
+
 // var_dump($rating);
 // die;
 $i = 0;
@@ -48,26 +45,43 @@ $i = 0;
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kegiatan</th>
+                    <?php
+                    echo (($_SESSION['role'] == "admin") ? '<th scope="col">Ormawa</th>'  : '');
+                    ?>
                     <th scope="col">Pelaksanaan</th>
-                    <th scope="col">Rata-Rata Rating</th>
+                    <th scope="col">totalRating</th>
                     <th scope="col">Komentar</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($rateCollections as $item) : $i++  ?>
+                <?php
+                // if ($role == "admin") {
+                //     $cursor = $kegiatans->getAll();
+                // } else {
+                //     $cursor = $kegiatans->getById($role);
+                // }
+                $i = 0;
+                ?>
+                <?php foreach ($kegiatanCollection as $item) : $i++ ?>
                     <?php
-                    $oid = $item['idKegiatan'];
+                    $oid = $item->_id;
+                    $idOrmawa = $item->idOrmawa;
+                    $nama = $item['details']['nama'];
+                    $pelaksanaan = $item['details']['pelaksanaan'];
+                    $totalRating = $item['totalRating'];
                     ?>
                     <tr>
                         <th scope="row"><?= $i ?></th>
-                        <td><?= $item['namaKegiatan'] ?></td>
-                        <td><?= $item['pelaksanaan'] ?></td>
-                        <td><?= $item['rating'] ?></td>
+                        <td><?= $nama ?></td>
+                        <?php
+                        echo (($_SESSION['role'] == "admin") ? '<td>' . $idOrmawa . '</td>' : '');
+                        ?>
+                        <td><?= $pelaksanaan ?></td>
+                        <td><?= $totalRating ?></td>
                         <td><a href="<?php BASEURL ?> ?page=detailKegiatan&id=<?= $id ?>&idKegiatan=<?= $oid ?>" class="btn btn-outline-primary ms-1"><i class="bi bi-chat-dots"></i></a></td>
                     </tr>
 
                 <?php endforeach; ?>
-
             </tbody>
         </table>
 

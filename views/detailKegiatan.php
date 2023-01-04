@@ -75,6 +75,8 @@ if (isset($_POST['rating'])) {
 }
 
 if (isset($_POST['submit'])) {
+    // var_dump($ratingPush);
+    // die;
 
     settype($_SESSION['rating'], "integer");
 
