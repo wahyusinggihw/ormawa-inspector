@@ -108,6 +108,10 @@ class Kegiatan extends DB
             'idOrmawa' => $id,
         ]);
     }
+    public function getByIdKomentar($id)
+    {
+        return $this->kegiatanCollections->find(['idOrmawa' => 'bem', 'komentars' => ['$exists' => true]]);
+    }
 
     public  function getByRole($role)
     {

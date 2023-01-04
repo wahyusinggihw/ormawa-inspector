@@ -1,0 +1,133 @@
+[{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddee"
+  },
+  "idOrmawa": "bem",
+  "details": {
+    "nama": "Kegiatan BEM 1",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddef"
+  },
+  "idOrmawa": "bem",
+  "details": {
+    "nama": "Kegiatan BEM 2",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf0"
+  },
+  "idOrmawa": "bem",
+  "details": {
+    "nama": "Kegiatan BEM 3",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf1"
+  },
+  "idOrmawa": "pokja",
+  "details": {
+    "nama": "Kegiatan pokja 1",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf2"
+  },
+  "idOrmawa": "pokja",
+  "details": {
+    "nama": "Kegiatan pokja 2",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf3"
+  },
+  "idOrmawa": "pokja",
+  "details": {
+    "nama": "Kegiatan pokja 3",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf4"
+  },
+  "idOrmawa": "hmjti",
+  "details": {
+    "nama": "Kegiatan hmjti 1",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf5"
+  },
+  "idOrmawa": "hmjti",
+  "details": {
+    "nama": "Kegiatan hmjti 2",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf6"
+  },
+  "idOrmawa": "hmjti",
+  "details": {
+    "nama": "Kegiatan hmjti 3",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf7"
+  },
+  "idOrmawa": "hmjtekin",
+  "details": {
+    "nama": "Kegiatan hmjtekin 1",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf8"
+  },
+  "idOrmawa": "hmjtekin",
+  "details": {
+    "nama": "Kegiatan hmjtekin 2",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+},{
+  "_id": {
+    "$oid": "63b4ffe8e4f82d51927cddf9"
+  },
+  "idOrmawa": "hmjtekin",
+  "details": {
+    "nama": "Kegiatan hmjtekin 3",
+    "pelaksanaan": "2021-01-01",
+    "status": "pending",
+    "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}]

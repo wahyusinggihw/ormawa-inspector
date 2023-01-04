@@ -19,6 +19,7 @@ $role = $roleCatcher->roleCatcher();
 $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
+    $pelaksanaan = $item['details']['pelaksanaan'];
     $deskripsi = $item['details']['deskripsi'];
     if (!isset($item['komentars'])) {
         $komentars = [];
@@ -27,7 +28,7 @@ foreach ($kegiatanCollection as $item) {
     }
     // $responden = $item['responden'];
 }
-
+$currentUserRole = $_SESSION['role'];
 $currentUserId = $_SESSION['user_id'];
 $currentUserName = $_SESSION['user_name'];
 $currentUserEmail = $_SESSION['user_email'];
@@ -39,7 +40,7 @@ $hasilRating = $rate->totalRating($id);
 // var_dump($rate);
 
 $cursor = $kegiatans->respondenChecker($id);
-var_dump($cursor);
+// var_dump($cursor);
 // die;
 if ($cursor) {
     $isResponded = true;
@@ -84,6 +85,9 @@ if (isset($_POST['submit'])) {
         } else {
             $rate->updateRating([
                 'idKegiatan' => new MongoDB\BSON\ObjectId("$id"),
+                'idOrmawa' => $idOrmawa,
+                'namaKegiatan' => $nama,
+                'pelaksanaan' => $pelaksanaan,
                 'userId' => $_SESSION['user_id'],
                 'rating' => $_SESSION['rating'],
 
@@ -140,23 +144,27 @@ $i = 0;
             </div>
 
             <?php if (!$isResponded) : ?>
-                <form action="" method="post" name="submit" class="mb-4">
-                    <div class="form-label">Beri Penilaian</div>
-                    <div class="mb-4">
-                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
-                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
-                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
-                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
-                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="komentarKegiatan">Beri komentar</label>
-                        <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3"></textarea>
-                    </div>
-                    <div class="float-end mt-1">
-                        <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
-                    </div>
-                </form>
+                <?php if ($currentUserRole != 'mahasiswa') : ?>
+                    <h1 class="fs-6 text-center">Halo admin!</h1>
+                <?php else : ?>
+                    <form action="" method="post" name="submit" class="mb-4">
+                        <div class="form-label">Beri Penilaian</div>
+                        <div class="mb-4">
+                            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="komentarKegiatan">Beri komentar</label>
+                            <textarea class="form-control" id="komentarKegiatan" name="komentarKegiatan" rows="3"></textarea>
+                        </div>
+                        <div class="float-end mt-1">
+                            <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Post comment</button>
+                        </div>
+                    </form>
+                <?php endif; ?>
             <?php else : ?>
                 <h1 class="fs-6 text-center">Anda sudah menilai!</h1>
             <?php endif; ?>

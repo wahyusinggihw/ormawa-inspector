@@ -1,0 +1,129 @@
+[{
+  "_id": "bem",
+  "namaOrmawa": "Badan Eksekutif Mahasiswa FTK",
+  "kegiatan": [
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47de"
+      },
+      "nama": "Kegiatan BEM 1",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47df"
+      },
+      "nama": "Kegiatan BEM 2",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e0"
+      },
+      "nama": "Kegiatan BEM 3",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+  ]
+},{
+  "_id": "pokja",
+  "namaOrmawa": "Kelompok Kerja dan Penalaran",
+  "kegiatan": [
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e1"
+      },
+      "nama": "Kegiatan pokja 1",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e2"
+      },
+      "nama": "Kegiatan pokja 2",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e3"
+      },
+      "nama": "Kegiatan pokja 3",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+  ]
+},{
+  "_id": "hmjti",
+  "namaOrmawa": "Himpunan Mahasiswa Jurusan Teknik Informatika",
+  "kegiatan": [
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e4"
+      },
+      "nama": "Kegiatan hmjti 1",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e5"
+      },
+      "nama": "Kegiatan hmjti 2",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e6"
+      },
+      "nama": "Kegiatan hmjti 3",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+  ]
+},{
+  "_id": "hmjtekin",
+  "namaOrmawa": "Himpunan Mahasiswa Jurusan Teknologi Industri",
+  "kegiatan": [
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e7"
+      },
+      "nama": "Kegiatan hmjtekin 1",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 1 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e8"
+      },
+      "nama": "Kegiatan hmjtekin 2",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 2 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "_id": {
+        "$oid": "63ad6f75fad612d30bfd47e9"
+      },
+      "nama": "Kegiatan hmjtekin 3",
+      "pelaksanaan": "2021-01-01",
+      "status": "pending",
+      "deskripsi": "Kegiatan 3 adalah Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+  ]
+}]

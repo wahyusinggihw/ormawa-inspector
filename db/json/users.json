@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "63ad365d398e9819c5be0fd1"
+  },
+  "role": "mahasiswa",
+  "name": "Mahasiswa 1",
+  "Prodi": "Computer Science",
+  "email": "mahasiswa1@gmail.com",
+  "password": "mahasiswa"
+},{
+  "_id": {
+    "$oid": "63ad365d398e9819c5be0fd2"
+  },
+  "role": "mahasiswa",
+  "name": "Mahasiswa 2",
+  "Prodi": "Computer Science",
+  "email": "mahasiswa2@gmail.com",
+  "password": "mahasiswa"
+},{
+  "_id": {
+    "$oid": "63ad365d398e9819c5be0fd3"
+  },
+  "role": "mahasiswa",
+  "name": "Mahasiswa 3",
+  "Prodi": "Computer Science",
+  "email": "mahasiswa3@gmail.com",
+  "password": "mahasiswa"
+},{
+  "_id": {
+    "$oid": "63ad365d398e9819c5be0fd4"
+  },
+  "role": "mahasiswa",
+  "name": "Mahasiswa 4",
+  "Prodi": "Computer Science",
+  "email": "mahasiswa3@gmail.com",
+  "password": "mahasiswa"
+},{
+  "_id": "admin",
+  "name": "Admin",
+  "email": "admin@gmail.com",
+  "password": "admin",
+  "role": "admin"
+},{
+  "_id": "bem",
+  "name": "bem",
+  "email": "bem@gmail.com",
+  "password": "bem",
+  "role": "bem"
+},{
+  "_id": "pokja",
+  "name": "pokja",
+  "email": "pokja@gmail.com",
+  "password": "pokja",
+  "role": "pokja"
+},{
+  "_id": "hmjti",
+  "name": "hmjti",
+  "email": "hmjti@gmail.com",
+  "password": "hmjti",
+  "role": "hmjti"
+},{
+  "_id": "hmjtekin",
+  "name": "hmjtekin",
+  "email": "hmjtekin@gmail.com",
+  "password": "hmjtekin",
+  "role": "hmjtekin"
+}]

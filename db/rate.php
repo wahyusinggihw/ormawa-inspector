@@ -39,7 +39,7 @@ class Rate extends DB
     }
     public function getById($id)
     {
-        return $this->kegiatanCollections->find([
+        return $this->rateCollections->find([
             'idOrmawa' => $id,
         ]);
     }
@@ -91,6 +91,36 @@ class Rate extends DB
             $cursor = $this->rateCollections->aggregate([
                 [
                     '$match' => ['idKegiatan' => new ObjectId($id)]
+                ],
+                [
+                    '$group' => ['_id' => null, 'totalRating' => ['$sum' => '$rating'], 'count' => ['$sum' => 1]]
+                ],
+                [
+                    '$project' => ['_id' => 0, 'averageRating' => ['$divide' => ['$totalRating', '$count']]]
+                ]
+            ]);
+
+            if (isset($cursor)) {
+                foreach ($cursor as $doc) {
+                    $averageRating = $doc['averageRating'];
+                    return $averageRating;
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function totalRatingReview($id)
+    {
+        // return 0;
+
+        if (!isset($rateCollections)) {
+            $cursor = $this->rateCollections->aggregate([
+                [
+                    '$match' => ['idOrmawa' => $id]
                 ],
                 [
                     '$group' => ['_id' => null, 'totalRating' => ['$sum' => '$rating'], 'count' => ['$sum' => 1]]
