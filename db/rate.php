@@ -85,21 +85,32 @@ class Rate extends DB
     // agregate rating
     public function totalRating($id)
     {
-        $cursor = $this->rateCollections->aggregate([
-            [
-                '$match' => ['idKegiatan' => new ObjectId($id)]
-            ],
-            [
-                '$group' => ['_id' => null, 'totalRating' => ['$sum' => '$rating'], 'count' => ['$sum' => 1]]
-            ],
-            [
-                '$project' => ['_id' => 0, 'averageRating' => ['$divide' => ['$totalRating', '$count']]]
-            ]
-        ]);
-        foreach ($cursor as $doc) {
-            $averageRating = $doc['averageRating'];
+        // return 0;
+
+        if (!isset($rateCollections)) {
+            $cursor = $this->rateCollections->aggregate([
+                [
+                    '$match' => ['idKegiatan' => new ObjectId($id)]
+                ],
+                [
+                    '$group' => ['_id' => null, 'totalRating' => ['$sum' => '$rating'], 'count' => ['$sum' => 1]]
+                ],
+                [
+                    '$project' => ['_id' => 0, 'averageRating' => ['$divide' => ['$totalRating', '$count']]]
+                ]
+            ]);
+
+            if (isset($cursor)) {
+                foreach ($cursor as $doc) {
+                    $averageRating = $doc['averageRating'];
+                    return $averageRating;
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
-        return $averageRating;
     }
 
     public function insertOne($data)

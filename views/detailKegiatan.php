@@ -20,6 +20,11 @@ $kegiatanCollection = $kegiatans->getKegiatan($id);
 foreach ($kegiatanCollection as $item) {
     $nama = $item['details']['nama'];
     $deskripsi = $item['details']['deskripsi'];
+    if (!isset($item['komentars'])) {
+        $komentars = [];
+    } else {
+        $komentars = $item['komentars'];
+    }
     // $responden = $item['responden'];
 }
 
@@ -36,11 +41,11 @@ $hasilRating = $rate->totalRating($id);
 $cursor = $kegiatans->respondenChecker($id);
 var_dump($cursor);
 // die;
-// if ($cursor) {
-//     $isResponded = true;
-// } else {
-//     $isResponded = false;
-// }
+if ($cursor) {
+    $isResponded = true;
+} else {
+    $isResponded = false;
+}
 
 // die;
 
@@ -163,7 +168,7 @@ $i = 0;
                 <p class="font-weight-bold mx-3 my-3"><?= $nama ?></p>
                 <div class="row gx-1 text-left mx-3 my-3">
                     <!-- <div class="col "><i class="bi bi-people-fill">500</i></div> -->
-                    <div class="col"><i class="bi bi-star-half"><?= $hasilRating ?></i></div>
+                    <div class="col"><i class="bi bi-star-half"> <?= $hasilRating ?></i></div>
                     <!-- <div class="col"><i class="bi bi-chat-dots"></i></div> -->
                 </div>
             </div>
@@ -176,7 +181,7 @@ $i = 0;
             <div class="col mt-5 mb-2 mx-3">
                 <div class="card mt-5 mb-2">
                     <h5 class="my-3 px-2">Komentar</h5>
-                    <?php if ($item['komentars'] == null) :  ?>
+                    <?php if ($komentars == null) :  ?>
                         <p class='mx-2 text-justify'>Belum ada komentar</p>
                     <?php else : ?>
                         <?php foreach ($item['komentars'] as $komen[0]) : ?>
