@@ -8,7 +8,10 @@ if ($_SESSION['role'] == "mahasiswa" || $_SESSION['role'] == "guest") {
 <?php
 require_once 'db/services.php';
 require_once 'db/kegiatan.php';
+require_once 'db/rate.php';
+
 $kegiatans = new Kegiatan();
+$rate = new Rate();
 $roleCatcher = new Services();
 $role = $roleCatcher->roleCatcher();
 
@@ -16,8 +19,9 @@ if (isset($_GET['action']) == 'delete') {
     // var_dump($_GET['id']);
     $id = $_GET['id'];
     $status = $kegiatans->drop($id);
+    $status2 = $rate->drop($id);
     // var_dump($status->getDeletedCount());
-    if ($status->getDeletedCount()) {
+    if ($status->getDeletedCount() || $status2->getDeletedCount()) {
         echo ("<script>alert('Data berhasil di hapus');</script>");
         echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=kegiatan' . "';</script>");
     }

@@ -142,8 +142,8 @@ class Rate extends DB
 
     public function drop($id)
     {
-        return $this->kegiatanCollections->deleteOne([
-            '_id' => new MongoDB\BSON\ObjectId("$id"),
+        return $this->rateCollections->deleteMany([
+            'idKegiatan' => new MongoDB\BSON\ObjectId("$id"),
         ],);
     }
 
