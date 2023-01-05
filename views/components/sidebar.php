@@ -17,6 +17,7 @@
      </li><!-- End Dashboard Nav -->
      <?php
       $role = $_SESSION['user_role'];
+      // $role = $redis->get('user_role');
       if (isset($role)) {
         if ($role != "mahasiswa" && $role != "guest") {
           include 'views/components/side_admin.php';

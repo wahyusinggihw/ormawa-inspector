@@ -1,6 +1,7 @@
 <?php
 require_once 'db/users.php';
 if (isset($_POST['logout'])) {
+    $redis->del('user_name');
     session_destroy();
     echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
     exit;

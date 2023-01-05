@@ -17,6 +17,9 @@ if (isset($_SESSION['user']) == null) {
                 $_SESSION["user_email"] = $post_email;
                 $_SESSION["user_name"] = $data->name;
                 $_SESSION["user_id"] = $data->_id;
+                // $redis->setex('user', 10, $data->name);
+                $redis->set('user_name', $data->name);
+                // $redis->set('user_role', $data->role);
                 echo ("<script>location.href = '" . 'http://localhost/ormawa-inspector/?page=index' . "';</script>");
             } else {
                 echo ("<script>alert('Login gagal');</script>");
